@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Case Study | Akinkunmi Akinlabi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { primary: '#00e1ff', dark: '#050505', 'dark-card': '#121212' },
+                    fontFamily: { sans: ['Space Grotesk', 'sans-serif'], heading: ['Outfit', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&family=Space+Grotesk:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body class="bg-dark text-gray-300 font-sans">
+
+    <nav class="py-6 px-8 border-b border-white/10 flex justify-between items-center">
+        <a href="index.html" class="text-white font-bold text-xl hover:text-primary transition">← Back to Portfolio</a>
+    </nav>
+
+    <header class="py-20 px-6 max-w-4xl mx-auto text-center">
+        <span class="text-primary tracking-widest uppercase text-sm font-bold">AI / Machine Learning</span>
+        <h1 class="text-5xl md:text-7xl font-heading text-white font-bold mt-4 mb-8">Automated Document Classifier</h1>
+        <p class="text-xl text-gray-400 leading-relaxed">How I reduced manual document processing time by 40% using BERT and Python, saving the operations team 20+ hours per week.</p>
+    </header>
+
+    <div class="max-w-6xl mx-auto px-6 mb-20">
+        <div class="aspect-video bg-dark-card rounded-2xl border border-white/10 overflow-hidden relative group">
+            <img src="https://placehold.co/1200x675/1a1a1a/00e1ff?text=Project+Screenshot" class="w-full h-full object-cover">
+        </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-6 grid md:grid-cols-3 gap-12 mb-20">
+        <div class="md:col-span-2 space-y-12">
+            <section>
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">The Challenge</h2>
+                <p>The client was manually sorting 5,000+ support tickets daily. This resulted in a 48-hour response delay and high operational costs. They needed an automated solution to route tickets to the correct department instantly.</p>
+            </section>
+            <section>
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">The Solution</h2>
+                <p>I engineered a text classification pipeline using Python and TensorFlow. By fine-tuning a BERT model, I achieved contextual understanding of the tickets, far surpassing traditional keyword matching.</p>
+                <ul class="list-disc pl-5 mt-4 space-y-2">
+                    <li>Data cleaning with Pandas & NLTK.</li>
+                    <li>Model training on AWS Sagemaker.</li>
+                    <li>API deployment using Docker & FastAPI.</li>
+                </ul>
+            </section>
+            <section>
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">The Results</h2>
+                <div class="grid grid-cols-3 gap-4 border-t border-white/10 pt-6">
+                    <div><span class="block text-3xl font-bold text-primary">40%</span><span class="text-sm">Time Saved</span></div>
+                    <div><span class="block text-3xl font-bold text-primary">95%</span><span class="text-sm">Accuracy</span></div>
+                    <div><span class="block text-3xl font-bold text-primary">Real-time</span><span class="text-sm">Processing</span></div>
+                </div>
+            </section>
+        </div>
+        
+        <div class="space-y-8">
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10">
+                <h3 class="text-white font-bold mb-4">Tech Stack</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Python</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">TensorFlow</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Docker</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">AWS</span>
+                </div>
+            </div>
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10">
+                <h3 class="text-white font-bold mb-4">Links</h3>
+                <a href="#" class="block w-full text-center py-3 bg-white text-black font-bold rounded hover:bg-gray-200 transition">View Code on GitHub</a>
+                <a href="#" class="block w-full text-center py-3 mt-3 border border-white/20 text-white font-bold rounded hover:bg-white/5 transition">Live Demo</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-10 border-t border-white/10 text-center">
+        <p class="text-white/30 text-xs">© 2025 Akinkunmi Akinlabi.</p>
+    </footer>
+</body>
+</html>

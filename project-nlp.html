@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NLP Document Classifier | Akinkunmi Akinlabi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { primary: '#00e1ff', dark: '#050505', 'dark-card': '#121212' },
+                    fontFamily: { sans: ['Space Grotesk', 'sans-serif'], heading: ['Outfit', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&family=Space+Grotesk:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body class="bg-dark text-gray-300 font-sans">
+
+    <nav class="py-6 px-8 border-b border-white/10 flex justify-between items-center">
+        <a href="index.html" class="text-white font-bold text-xl hover:text-primary transition">← Back to Portfolio</a>
+    </nav>
+
+    <header class="py-20 px-6 max-w-4xl mx-auto text-center">
+        <span class="text-primary tracking-widest uppercase text-sm font-bold">AI / Machine Learning</span>
+        <h1 class="text-5xl md:text-6xl font-heading text-white font-bold mt-4 mb-8">Automated Document Classifier</h1>
+        <p class="text-xl text-gray-400 leading-relaxed">Engineered a BERT-based classification pipeline that reduced manual document processing time by 40%, saving the operations team 20+ hours per week.</p>
+    </header>
+
+    <div class="max-w-6xl mx-auto px-6 mb-20">
+        <div class="aspect-video bg-dark-card rounded-2xl border border-white/10 overflow-hidden relative">
+            <img src="https://placehold.co/1200x675/1a1a1a/00e1ff?text=NLP+Pipeline+Diagram" class="w-full h-full object-cover">
+        </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-6 grid md:grid-cols-3 gap-12 mb-20">
+        <div class="md:col-span-2 space-y-12">
+            <section>
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">The Challenge</h2>
+                <p>The client was receiving 5,000+ support tickets and legal documents daily. Manual sorting resulted in a 48-hour response delay and high operational costs. They needed an automated solution to route tickets to the correct department instantly with high accuracy.</p>
+            </section>
+            <section>
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">The Solution</h2>
+                <p>I developed an end-to-end NLP pipeline using Python and TensorFlow. Moving beyond simple keyword matching, I fine-tuned a pre-trained BERT model to understand the context and sentiment of the documents.</p>
+                <ul class="list-disc pl-5 mt-4 space-y-2">
+                    <li>Implemented text preprocessing with NLTK (tokenization, lemmatization).</li>
+                    <li>Trained the model on a dataset of 50k historical documents.</li>
+                    <li>Deployed the model as a REST API using FastAPI and Docker containers.</li>
+                </ul>
+            </section>
+            <section>
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">The Results</h2>
+                <div class="grid grid-cols-3 gap-4 border-t border-white/10 pt-6">
+                    <div><span class="block text-3xl font-bold text-primary">40%</span><span class="text-sm">Time Saved</span></div>
+                    <div><span class="block text-3xl font-bold text-primary">95%</span><span class="text-sm">F1-Score</span></div>
+                    <div><span class="block text-3xl font-bold text-primary">&lt;200ms</span><span class="text-sm">Latency</span></div>
+                </div>
+            </section>
+        </div>
+        
+        <div class="space-y-8">
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10">
+                <h3 class="text-white font-bold mb-4">Tech Stack</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Python</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">TensorFlow</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">BERT</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Docker</span>
+                </div>
+            </div>
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10">
+                <h3 class="text-white font-bold mb-4">Project Links</h3>
+                <a href="#" class="block w-full text-center py-3 bg-white text-black font-bold rounded hover:bg-gray-200 transition">View Code on GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-10 border-t border-white/10 text-center">
+        <p class="text-white/30 text-xs">© 2025 Akinkunmi Akinlabi.</p>
+    </footer>
+</body>
+</html>
