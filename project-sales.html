@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revenue Dashboard | Akinkunmi Akinlabi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { primary: '#00e1ff', dark: '#050505', 'dark-card': '#121212' },
+                    fontFamily: { sans: ['Space Grotesk', 'sans-serif'], heading: ['Outfit', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&family=Space+Grotesk:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body class="bg-dark text-gray-300 font-sans">
+
+    <nav class="py-6 px-8 border-b border-white/10 flex justify-between items-center">
+        <a href="index.html" class="text-white font-bold text-xl hover:text-primary transition">← Back to Portfolio</a>
+    </nav>
+
+    <header class="py-20 px-6 max-w-4xl mx-auto text-center">
+        <span class="text-primary tracking-widest uppercase text-sm font-bold">Data Analytics</span>
+        <h1 class="text-5xl md:text-6xl font-heading text-white font-bold mt-4 mb-8">Revenue Intelligence Dashboard</h1>
+        <p class="text-xl text-gray-400 leading-relaxed">Designed an interactive Power BI dashboard that identified $120k in underperforming inventory, enabling executive leadership to pivot Q4 strategy.</p>
+    </header>
+
+    <div class="max-w-6xl mx-auto px-6 mb-20">
+        <div class="aspect-video bg-dark-card rounded-2xl border border-white/10 overflow-hidden relative">
+            <img src="https://placehold.co/1200x675/1a1a1a/00e1ff?text=Power+BI+Dashboard+Screenshot" class="w-full h-full object-cover">
+        </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-6 grid md:grid-cols-3 gap-12 mb-20">
+        <div class="md:col-span-2 space-y-12">
+            <section>
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">The Challenge</h2>
+                <p>The retail client was relying on static Excel spreadsheets for weekly reporting. This latency meant they were missing sales trends and overstocking low-demand items, tying up capital in stagnant inventory.</p>
+            </section>
+            <section>
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">The Solution</h2>
+                <p>I connected their SQL database directly to Power BI to create a live-updating dashboard. I utilized complex DAX measures to calculate Month-over-Month growth and inventory turnover ratios.</p>
+                <ul class="list-disc pl-5 mt-4 space-y-2">
+                    <li>Modeled data using Star Schema for optimized query performance.</li>
+                    <li>Created dynamic drill-downs allowing managers to view sales by region, category, and SKU.</li>
+                    <li>Implemented Row-Level Security (RLS) to ensure regional managers only saw their data.</li>
+                </ul>
+            </section>
+            <section>
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">The Results</h2>
+                <div class="grid grid-cols-3 gap-4 border-t border-white/10 pt-6">
+                    <div><span class="block text-3xl font-bold text-primary">$120k</span><span class="text-sm">Value Identified</span></div>
+                    <div><span class="block text-3xl font-bold text-primary">Live</span><span class="text-sm">Data Latency</span></div>
+                    <div><span class="block text-3xl font-bold text-primary">15hrs</span><span class="text-sm">Reporting Saved/Wk</span></div>
+                </div>
+            </section>
+        </div>
+        
+        <div class="space-y-8">
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10">
+                <h3 class="text-white font-bold mb-4">Tech Stack</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Power BI</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">SQL</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">DAX</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Excel</span>
+                </div>
+            </div>
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10">
+                <h3 class="text-white font-bold mb-4">Project Links</h3>
+                <a href="#" class="block w-full text-center py-3 mt-3 border border-white/20 text-white font-bold rounded hover:bg-white/5 transition">View Dashboard (Demo)</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-10 border-t border-white/10 text-center">
+        <p class="text-white/30 text-xs">© 2025 Akinkunmi Akinlabi.</p>
+    </footer>
+</body>
+</html>
