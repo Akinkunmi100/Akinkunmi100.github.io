@@ -1,0 +1,24 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "A world-class portfolio website for showcasing expertise in Research, Data Analysis, and AI/ML Engineering.",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "build:css": "npx tailwindcss -i css/styles.css -o css/output.css",
+    "watch:css": "npx tailwindcss -i css/styles.css -o css/output.css --watch",
+    "serve": "npx http-server -c-1 -p 8080 -o",
+    "start": "npm run serve",
+    "dev": "concurrently \"npm run watch:css\" \"npm run serve\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.18",
+    "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
