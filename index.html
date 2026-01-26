@@ -12,14 +12,16 @@
         }
     </script>
     <!-- Trigger rebuild: 2026-01-22 -->
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-    
+
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -57,68 +59,193 @@
     </script>
 
     <style>
-        body { background-color: #050505; color: #94a3b8; overflow-x: hidden; }
-        
+        body {
+            background-color: #050505;
+            color: #94a3b8;
+            overflow-x: hidden;
+        }
+
         /* Preloader */
-        #preloader { position: fixed; inset: 0; background: #050505; z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s ease-out; }
-        .loader-ring { width: 60px; height: 60px; border: 4px solid rgba(255, 255, 255, 0.1); border-top: 4px solid #00e1ff; border-radius: 50%; animation: spin 1s linear infinite; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: #050505;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .loader-ring {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #00e1ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
 
         /* Scroll Progress */
-        #scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: #00e1ff; z-index: 100; width: 0%; box-shadow: 0 0 10px #00e1ff; transition: width 0.1s; }
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: #00e1ff;
+            z-index: 100;
+            width: 0%;
+            box-shadow: 0 0 10px #00e1ff;
+            transition: width 0.1s;
+        }
 
         /* Glassmorphism */
-        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; }
-        .glass-card:hover { border-color: rgba(0, 225, 255, 0.3); background: rgba(255, 255, 255, 0.04); transform: translateY(-5px); box-shadow: 0 10px 40px -10px rgba(0, 225, 255, 0.1); }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(0, 225, 255, 0.3);
+            background: rgba(255, 255, 255, 0.04);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px -10px rgba(0, 225, 255, 0.1);
+        }
 
         /* Cursor */
-        .typewriter-cursor { display: inline-block; color: #00e1ff; animation: blink 0.7s infinite; font-weight: 100; margin-left: 2px; }
-        @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+        .typewriter-cursor {
+            display: inline-block;
+            color: #00e1ff;
+            animation: blink 0.7s infinite;
+            font-weight: 100;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+
+            0%,
+            50% {
+                opacity: 1;
+            }
+
+            51%,
+            100% {
+                opacity: 0;
+            }
+        }
 
         /* Form Styling */
-        .form-input { width: 100%; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 1rem; color: white; outline: none; transition: all 0.3s; border-radius: 0.5rem; }
-        .form-input:focus { border-color: #00e1ff; box-shadow: 0 0 15px rgba(0,225,255,0.1); }
-        
+        .form-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            color: white;
+            outline: none;
+            transition: all 0.3s;
+            border-radius: 0.5rem;
+        }
+
+        .form-input:focus {
+            border-color: #00e1ff;
+            box-shadow: 0 0 15px rgba(0, 225, 255, 0.1);
+        }
+
         /* Selection */
-        ::selection { background-color: #00e1ff; color: #000; }
-        html { scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #00e1ff; }
-        .filter-btn.active { background-color: #00e1ff; color: #000000; border-color: #00e1ff; }
-        .mobile-menu-active { opacity: 1 !important; pointer-events: auto !important; }
+        ::selection {
+            background-color: #00e1ff;
+            color: #000;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00e1ff;
+        }
+
+        .filter-btn.active {
+            background-color: #00e1ff;
+            color: #000000;
+            border-color: #00e1ff;
+        }
+
+        .mobile-menu-active {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
     </style>
 </head>
 
 <body class="bg-dark text-text-body font-sans antialiased">
 
-    <div id="preloader"><div class="loader-ring"></div></div>
+    <div id="preloader">
+        <div class="loader-ring"></div>
+    </div>
     <div id="scroll-progress"></div>
 
     <div class="fixed inset-0 bg-noise opacity-20 pointer-events-none z-50 mix-blend-overlay"></div>
     <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div class="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] animate-blob mix-blend-screen"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[120px] animate-blob mix-blend-screen" style="animation-delay: 2s"></div>
+        <div
+            class="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] animate-blob mix-blend-screen">
+        </div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[120px] animate-blob mix-blend-screen"
+            style="animation-delay: 2s"></div>
     </div>
 
-    <nav class="fixed top-0 w-full z-40 py-4 px-4 md:px-8 border-b border-white/5 bg-dark/80 backdrop-blur-md transition-all duration-300" id="navbar">
+    <nav class="fixed top-0 w-full z-40 py-4 px-4 md:px-8 border-b border-white/5 bg-dark/80 backdrop-blur-md transition-all duration-300"
+        id="navbar">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <a href="#home" class="text-2xl font-bold font-heading tracking-tight text-white group relative z-50">
                 Akinkunmi<span class="text-primary group-hover:text-white transition-colors">.</span>
             </a>
             <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-[0.15em] text-white/50">
-                <a href="#about" class="hover:text-primary transition-colors hover:scale-105 transform duration-200">About</a>
-                <a href="#skills" class="hover:text-primary transition-colors hover:scale-105 transform duration-200">Skills</a>
-                <a href="#projects" class="hover:text-primary transition-colors hover:scale-105 transform duration-200">Projects</a>
-                <a href="#contact" class="hover:text-primary transition-colors hover:scale-105 transform duration-200">Contact</a>
+                <a href="#about"
+                    class="hover:text-primary transition-colors hover:scale-105 transform duration-200">About</a>
+                <a href="#skills"
+                    class="hover:text-primary transition-colors hover:scale-105 transform duration-200">Skills</a>
+                <a href="#projects"
+                    class="hover:text-primary transition-colors hover:scale-105 transform duration-200">Projects</a>
+                <a href="#contact"
+                    class="hover:text-primary transition-colors hover:scale-105 transform duration-200">Contact</a>
             </div>
             <div class="flex items-center gap-4">
-                <a href="https://drive.google.com/file/d/1bvziPTUXLaKllwyhAOh22E8U09vSHiqu/view?usp=sharing" target="_blank" class="hidden md:flex px-6 py-2 border border-white/20 text-white rounded-full text-xs font-bold uppercase tracking-widest hover:bg-primary hover:border-primary hover:text-black transition-all">Resume</a>
-                <button id="mobile-toggle" class="md:hidden text-white text-2xl relative z-50"><i class="fas fa-bars"></i></button>
+                <a href="https://drive.google.com/file/d/1bvziPTUXLaKllwyhAOh22E8U09vSHiqu/view?usp=sharing"
+                    target="_blank"
+                    class="hidden md:flex px-6 py-2 border border-white/20 text-white rounded-full text-xs font-bold uppercase tracking-widest hover:bg-primary hover:border-primary hover:text-black transition-all">Resume</a>
+                <button id="mobile-toggle" class="md:hidden text-white text-2xl relative z-50"><i
+                        class="fas fa-bars"></i></button>
             </div>
         </div>
-        <div id="mobile-menu" class="fixed inset-0 bg-dark/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-all duration-300">
+        <div id="mobile-menu"
+            class="fixed inset-0 bg-dark/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-all duration-300">
             <a href="#about" class="text-2xl font-heading text-white hover:text-primary mobile-link">About</a>
             <a href="#skills" class="text-2xl font-heading text-white hover:text-primary mobile-link">Skills</a>
             <a href="#projects" class="text-2xl font-heading text-white hover:text-primary mobile-link">Projects</a>
@@ -129,54 +256,94 @@
     <section id="home" class="relative z-10 min-h-screen flex items-center justify-center pt-20">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center w-full">
             <div data-aos="fade-right" data-aos-duration="1000">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-8"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>Available for hire</div>
-                <h1 class="text-5xl md:text-7xl font-bold font-heading text-white mb-6 leading-[1.1] tracking-tight">Hi, I'm <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-primary/80">Akinkunmi.</span></h1>
-                <h2 class="text-xl md:text-2xl font-heading text-white/60 mb-8 flex items-center gap-3 min-h-[32px]"><span class="w-8 h-[1px] bg-white/20"></span><span>I am a <span id="typewriter" class="text-primary font-semibold"></span><span class="typewriter-cursor">|</span></span></h2>
-                <p class="text-lg text-text-body font-light max-w-lg leading-relaxed mb-10">Transforming complex data into actionable insights through rigorous research and cutting-edge AI innovation.</p>
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-8">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>Available for hire</div>
+                <h1 class="text-5xl md:text-7xl font-bold font-heading text-white mb-6 leading-[1.1] tracking-tight">Hi,
+                    I'm <br><span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-primary/80">Akinkunmi.</span>
+                </h1>
+                <h2 class="text-xl md:text-2xl font-heading text-white/60 mb-8 flex items-center gap-3 min-h-[32px]">
+                    <span class="w-8 h-[1px] bg-white/20"></span><span>I am a <span id="typewriter"
+                            class="text-primary font-semibold"></span><span class="typewriter-cursor">|</span></span>
+                </h2>
+                <p class="text-lg text-text-body font-light max-w-lg leading-relaxed mb-10">Transforming complex data
+                    into actionable insights through rigorous research and cutting-edge AI innovation.</p>
                 <div class="flex flex-wrap gap-4">
-                    <a href="#projects" class="px-8 py-4 bg-primary text-black font-bold uppercase tracking-wider rounded-sm hover:bg-white transition-colors duration-300">View Projects</a>
-                    <a href="#contact" class="px-8 py-4 border border-white/20 text-white font-bold uppercase tracking-wider hover:bg-white/5 transition-colors duration-300">Contact Me</a>
+                    <a href="#projects"
+                        class="px-8 py-4 bg-primary text-black font-bold uppercase tracking-wider rounded-sm hover:bg-white transition-colors duration-300">View
+                        Projects</a>
+                    <a href="#contact"
+                        class="px-8 py-4 border border-white/20 text-white font-bold uppercase tracking-wider hover:bg-white/5 transition-colors duration-300">Contact
+                        Me</a>
                 </div>
             </div>
             <div class="relative flex justify-center lg:justify-end" data-aos="zoom-in" data-aos-duration="1200">
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-br from-primary/20 to-indigo-500/20 rounded-full blur-[80px]"></div>
-                <div class="relative w-[350px] md:w-[400px] glass-card p-3 rounded-2xl transform rotate-3 hover:rotate-0 transition-all duration-700 hover:shadow-[0_0_30px_rgba(0,225,255,0.15)]">
-                    <div class="relative rounded-xl overflow-hidden bg-dark-card border border-white/5 grayscale hover:grayscale-0 transition-all duration-500">
+                <div
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-br from-primary/20 to-indigo-500/20 rounded-full blur-[80px]">
+                </div>
+                <div
+                    class="relative w-[350px] md:w-[400px] glass-card p-3 rounded-2xl transform rotate-3 hover:rotate-0 transition-all duration-700 hover:shadow-[0_0_30px_rgba(0,225,255,0.15)]">
+                    <div
+                        class="relative rounded-xl overflow-hidden bg-dark-card border border-white/5 grayscale hover:grayscale-0 transition-all duration-500">
                         <img src="assets/images/profile.jpg" class="w-full h-auto object-cover" alt="Profile">
-                        <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/90 to-transparent flex items-center gap-2 mb-1"><div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div><span class="text-primary text-[10px] font-bold uppercase tracking-widest">Active</span></div>
+                        <div
+                            class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/90 to-transparent flex items-center gap-2 mb-1">
+                            <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div><span
+                                class="text-primary text-[10px] font-bold uppercase tracking-widest">Active</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block text-white/30"><i class="fas fa-mouse text-2xl"></i></div>
+        <div
+            class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block text-white/30">
+            <i class="fas fa-mouse text-2xl"></i></div>
     </section>
 
     <section id="about" class="py-24 relative z-10 border-t border-white/5 bg-dark-alt">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-start">
             <div data-aos="fade-right">
-                <h2 class="text-4xl md:text-5xl font-heading font-bold text-white mb-8">About <span class="text-primary">Me</span></h2>
-                <p class="text-text-body mb-6 leading-relaxed text-lg font-light">I'm <strong class="text-white">Akinkunmi Akinlabi Taofeek</strong>, a passionate researcher, data analyst, and AI engineer based in Lagos, Nigeria.</p>
-                <p class="text-text-body mb-10 leading-relaxed font-light">My work bridges the gap between raw data and strategic decision-making. Whether it's conducting rigorous academic research or deploying machine learning pipelines, I focus on accuracy, efficiency, and impact.</p>
+                <h2 class="text-4xl md:text-5xl font-heading font-bold text-white mb-8">About <span
+                        class="text-primary">Me</span></h2>
+                <p class="text-text-body mb-6 leading-relaxed text-lg font-light">I'm <strong
+                        class="text-white">Akinkunmi Akinlabi Taofeek</strong>, a passionate researcher, data analyst,
+                    and AI engineer based in Lagos, Nigeria.</p>
+                <p class="text-text-body mb-10 leading-relaxed font-light">My work bridges the gap between raw data and
+                    strategic decision-making. Whether it's conducting rigorous academic research or deploying machine
+                    learning pipelines, I focus on accuracy, efficiency, and impact.</p>
                 <div class="grid grid-cols-2 gap-4">
-                    <div class="p-6 glass-card rounded-lg hover:border-primary/50 transition-colors"><h3 class="text-4xl font-bold text-primary font-heading">04+</h3><p class="text-xs text-white/50 uppercase tracking-widest mt-2">Years Experience</p></div>
-                    <div class="p-6 glass-card rounded-lg hover:border-primary/50 transition-colors"><h3 class="text-4xl font-bold text-primary font-heading">10+</h3><p class="text-xs text-white/50 uppercase tracking-widest mt-2">Projects Completed</p></div>
+                    <div class="p-6 glass-card rounded-lg hover:border-primary/50 transition-colors">
+                        <h3 class="text-4xl font-bold text-primary font-heading">04+</h3>
+                        <p class="text-xs text-white/50 uppercase tracking-widest mt-2">Years Experience</p>
+                    </div>
+                    <div class="p-6 glass-card rounded-lg hover:border-primary/50 transition-colors">
+                        <h3 class="text-4xl font-bold text-primary font-heading">10+</h3>
+                        <p class="text-xs text-white/50 uppercase tracking-widest mt-2">Projects Completed</p>
+                    </div>
                 </div>
             </div>
             <div class="space-y-6 pt-4" data-aos="fade-left" data-aos-delay="200">
                 <div class="glass-card p-8 rounded-2xl relative overflow-hidden group hover:bg-white/5">
                     <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
-                    <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity"><i class="fas fa-briefcase text-6xl text-primary"></i></div>
+                    <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity"><i
+                            class="fas fa-briefcase text-6xl text-primary"></i></div>
                     <span class="text-primary text-xs font-bold uppercase tracking-widest">2021 - Present</span>
                     <h3 class="text-2xl font-bold text-white mt-2 font-heading">Data Analyst & Research Specialist</h3>
                     <p class="text-white/40 text-sm mb-6 uppercase tracking-wider">Research & Analytics</p>
                     <ul class="text-sm text-text-body space-y-3">
-                        <li class="flex items-start gap-2"><span class="text-primary mt-1">▹</span> Conducted quantitative and qualitative research.</li>
-                        <li class="flex items-start gap-2"><span class="text-primary mt-1">▹</span> Built interactive dashboards using Power BI.</li>
+                        <li class="flex items-start gap-2"><span class="text-primary mt-1">▹</span> Conducted
+                            quantitative and qualitative research.</li>
+                        <li class="flex items-start gap-2"><span class="text-primary mt-1">▹</span> Built interactive
+                            dashboards using Power BI.</li>
                     </ul>
                 </div>
                 <div class="glass-card p-8 rounded-2xl relative overflow-hidden group hover:bg-white/5">
-                    <div class="absolute top-0 left-0 w-1 h-full bg-white/20 group-hover:bg-primary transition-colors"></div>
-                    <span class="text-white/40 text-xs font-bold uppercase tracking-widest group-hover:text-primary transition-colors">2017 - 2021</span>
+                    <div class="absolute top-0 left-0 w-1 h-full bg-white/20 group-hover:bg-primary transition-colors">
+                    </div>
+                    <span
+                        class="text-white/40 text-xs font-bold uppercase tracking-widest group-hover:text-primary transition-colors">2017
+                        - 2021</span>
                     <h3 class="text-xl font-bold text-white mt-2 font-heading">B.Sc. Statistics / Computer Science</h3>
                     <p class="text-white/40 text-sm">University of Lagos</p>
                 </div>
@@ -188,50 +355,124 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-20" data-aos="fade-up">
                 <p class="text-primary text-xs font-bold uppercase tracking-[0.2em] mb-4">My Toolkit</p>
-                <h2 class="text-4xl md:text-5xl font-heading font-bold text-white">Technical <span class="text-primary">Skills</span></h2>
+                <h2 class="text-4xl md:text-5xl font-heading font-bold text-white">Technical <span
+                        class="text-primary">Skills</span></h2>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8 mb-24">
-                <div class="glass-card p-8 rounded-2xl hover:border-primary/50 transition-all duration-300" data-aos="fade-up">
-                    <div class="flex items-center gap-3 mb-6"><div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary"><i class="fas fa-code"></i></div><h3 class="text-xl font-bold text-white">Core Languages</h3></div>
+                <div class="glass-card p-8 rounded-2xl hover:border-primary/50 transition-all duration-300"
+                    data-aos="fade-up">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                            <i class="fas fa-code"></i></div>
+                        <h3 class="text-xl font-bold text-white">Core Languages</h3>
+                    </div>
                     <div class="space-y-4">
-                        <div class="flex items-center justify-between"><div class="flex items-center gap-3"><i class="devicon-python-plain text-xl text-primary"></i> <span class="text-white">Python</span></div><span class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">EXPERT</span></div>
-                        <div class="flex items-center justify-between"><div class="flex items-center gap-3"><i class="devicon-postgresql-plain text-xl text-primary"></i> <span class="text-white">SQL</span></div><span class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">EXPERT</span></div>
-                        <div class="flex items-center justify-between"><div class="flex items-center gap-3"><i class="devicon-r-plain text-xl text-white"></i> <span class="text-white">R</span></div><span class="text-xs font-bold text-white/50 bg-white/5 px-2 py-1 rounded">ADVANCED</span></div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3"><i
+                                    class="devicon-python-plain text-xl text-primary"></i> <span
+                                    class="text-white">Python</span></div><span
+                                class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">EXPERT</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3"><i
+                                    class="devicon-postgresql-plain text-xl text-primary"></i> <span
+                                    class="text-white">SQL</span></div><span
+                                class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">EXPERT</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3"><i class="devicon-r-plain text-xl text-white"></i>
+                                <span class="text-white">R</span></div><span
+                                class="text-xs font-bold text-white/50 bg-white/5 px-2 py-1 rounded">ADVANCED</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="glass-card p-8 rounded-2xl hover:border-primary/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex items-center gap-3 mb-6"><div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary"><i class="fas fa-chart-pie"></i></div><h3 class="text-xl font-bold text-white">Data Analysis</h3></div>
+                <div class="glass-card p-8 rounded-2xl hover:border-primary/50 transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                            <i class="fas fa-chart-pie"></i></div>
+                        <h3 class="text-xl font-bold text-white">Data Analysis</h3>
+                    </div>
                     <div class="space-y-4">
-                        <div class="flex items-center justify-between"><div class="flex items-center gap-3"><i class="fas fa-chart-bar text-xl text-primary"></i> <span class="text-white">Power BI</span></div><span class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">EXPERT</span></div>
-                        <div class="flex items-center justify-between"><div class="flex items-center gap-3"><i class="fas fa-file-excel text-xl text-primary"></i> <span class="text-white">Adv. Excel</span></div><span class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">EXPERT</span></div>
-                        <div class="flex items-center justify-between"><div class="flex items-center gap-3"><i class="devicon-tableau-plain text-xl text-white"></i> <span class="text-white">Tableau</span></div><span class="text-xs font-bold text-white/50 bg-white/5 px-2 py-1 rounded">INTERMEDIATE</span></div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3"><i class="fas fa-chart-bar text-xl text-primary"></i>
+                                <span class="text-white">Power BI</span></div><span
+                                class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">EXPERT</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3"><i class="fas fa-file-excel text-xl text-primary"></i>
+                                <span class="text-white">Adv. Excel</span></div><span
+                                class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">EXPERT</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3"><i
+                                    class="devicon-tableau-plain text-xl text-white"></i> <span
+                                    class="text-white">Tableau</span></div><span
+                                class="text-xs font-bold text-white/50 bg-white/5 px-2 py-1 rounded">INTERMEDIATE</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="glass-card p-8 rounded-2xl hover:border-primary/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
-                    <div class="flex items-center gap-3 mb-6"><div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary"><i class="fas fa-brain"></i></div><h3 class="text-xl font-bold text-white">AI & ML</h3></div>
+                <div class="glass-card p-8 rounded-2xl hover:border-primary/50 transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                            <i class="fas fa-brain"></i></div>
+                        <h3 class="text-xl font-bold text-white">AI & ML</h3>
+                    </div>
                     <div class="space-y-4">
-                        <div class="flex items-center justify-between"><div class="flex items-center gap-3"><i class="devicon-tensorflow-original text-xl text-primary"></i> <span class="text-white">TensorFlow</span></div><span class="text-xs font-bold text-white/50 bg-white/5 px-2 py-1 rounded">ADVANCED</span></div>
-                        <div class="flex items-center justify-between"><div class="flex items-center gap-3"><i class="devicon-scikitlearn-plain text-xl text-primary"></i> <span class="text-white">Scikit-Learn</span></div><span class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">EXPERT</span></div>
-                        <div class="flex items-center justify-between"><div class="flex items-center gap-3"><i class="devicon-pandas-plain text-xl text-white"></i> <span class="text-white">Pandas</span></div><span class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">EXPERT</span></div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3"><i
+                                    class="devicon-tensorflow-original text-xl text-primary"></i> <span
+                                    class="text-white">TensorFlow</span></div><span
+                                class="text-xs font-bold text-white/50 bg-white/5 px-2 py-1 rounded">ADVANCED</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3"><i
+                                    class="devicon-scikitlearn-plain text-xl text-primary"></i> <span
+                                    class="text-white">Scikit-Learn</span></div><span
+                                class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">EXPERT</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3"><i class="devicon-pandas-plain text-xl text-white"></i>
+                                <span class="text-white">Pandas</span></div><span
+                                class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">EXPERT</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div data-aos="fade-up">
-                <h3 class="text-xl font-heading font-bold text-white mb-10 border-l-4 border-primary pl-4">Full Tech Stack</h3>
+                <h3 class="text-xl font-heading font-bold text-white mb-10 border-l-4 border-primary pl-4">Full Tech
+                    Stack</h3>
                 <div class="glass-card p-8 rounded-2xl border border-white/5">
                     <div class="flex flex-wrap gap-8 justify-center">
-                        <div class="flex flex-col items-center gap-2 group"><i class="devicon-git-plain colored text-4xl group-hover:scale-110 transition-transform"></i><span class="text-xs text-white/50">Git</span></div>
-                        <div class="flex flex-col items-center gap-2 group"><i class="devicon-docker-plain colored text-4xl group-hover:scale-110 transition-transform"></i><span class="text-xs text-white/50">Docker</span></div>
-                        <div class="flex flex-col items-center gap-2 group"><i class="devicon-amazonwebservices-plain-wordmark colored text-4xl group-hover:scale-110 transition-transform"></i><span class="text-xs text-white/50">AWS</span></div>
-                        <div class="flex flex-col items-center gap-2 group"><i class="devicon-linux-plain text-white text-4xl group-hover:scale-110 transition-transform"></i><span class="text-xs text-white/50">Linux</span></div>
-                        <div class="flex flex-col items-center gap-2 group"><i class="devicon-jupyter-plain-wordmark colored text-4xl group-hover:scale-110 transition-transform"></i><span class="text-xs text-white/50">Jupyter</span></div>
-                        <div class="flex flex-col items-center gap-2 group"><i class="devicon-vscode-plain colored text-4xl group-hover:scale-110 transition-transform"></i><span class="text-xs text-white/50">VS Code</span></div>
-                        <div class="flex flex-col items-center gap-2 group"><i class="devicon-numpy-plain text-white text-4xl group-hover:scale-110 transition-transform"></i><span class="text-xs text-white/50">NumPy</span></div>
-                        <div class="flex flex-col items-center gap-2 group"><i class="devicon-opencv-plain colored text-4xl group-hover:scale-110 transition-transform"></i><span class="text-xs text-white/50">OpenCV</span></div>
+                        <div class="flex flex-col items-center gap-2 group"><i
+                                class="devicon-git-plain colored text-4xl group-hover:scale-110 transition-transform"></i><span
+                                class="text-xs text-white/50">Git</span></div>
+                        <div class="flex flex-col items-center gap-2 group"><i
+                                class="devicon-docker-plain colored text-4xl group-hover:scale-110 transition-transform"></i><span
+                                class="text-xs text-white/50">Docker</span></div>
+                        <div class="flex flex-col items-center gap-2 group"><i
+                                class="devicon-amazonwebservices-plain-wordmark colored text-4xl group-hover:scale-110 transition-transform"></i><span
+                                class="text-xs text-white/50">AWS</span></div>
+                        <div class="flex flex-col items-center gap-2 group"><i
+                                class="devicon-linux-plain text-white text-4xl group-hover:scale-110 transition-transform"></i><span
+                                class="text-xs text-white/50">Linux</span></div>
+                        <div class="flex flex-col items-center gap-2 group"><i
+                                class="devicon-jupyter-plain-wordmark colored text-4xl group-hover:scale-110 transition-transform"></i><span
+                                class="text-xs text-white/50">Jupyter</span></div>
+                        <div class="flex flex-col items-center gap-2 group"><i
+                                class="devicon-vscode-plain colored text-4xl group-hover:scale-110 transition-transform"></i><span
+                                class="text-xs text-white/50">VS Code</span></div>
+                        <div class="flex flex-col items-center gap-2 group"><i
+                                class="devicon-numpy-plain text-white text-4xl group-hover:scale-110 transition-transform"></i><span
+                                class="text-xs text-white/50">NumPy</span></div>
+                        <div class="flex flex-col items-center gap-2 group"><i
+                                class="devicon-opencv-plain colored text-4xl group-hover:scale-110 transition-transform"></i><span
+                                class="text-xs text-white/50">OpenCV</span></div>
                     </div>
                 </div>
             </div>
@@ -241,85 +482,154 @@
     <section id="projects" class="py-24 relative z-10 border-t border-white/5">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-                <div><p class="text-primary text-xs font-bold uppercase tracking-widest mb-2">Portfolio</p><h2 class="text-4xl md:text-5xl font-heading font-bold text-white">Selected <span class="text-white/20">Works</span></h2></div>
+                <div>
+                    <p class="text-primary text-xs font-bold uppercase tracking-widest mb-2">Portfolio</p>
+                    <h2 class="text-4xl md:text-5xl font-heading font-bold text-white">Selected <span
+                            class="text-white/20">Works</span></h2>
+                </div>
                 <div class="flex gap-2" id="project-filters">
-                    <button class="filter-btn active px-4 py-2 rounded-full border border-primary bg-primary text-black text-xs font-bold uppercase transition-all" data-filter="all">All</button>
-                    <button class="filter-btn px-4 py-2 rounded-full border border-white/10 text-white/60 text-xs font-bold uppercase hover:bg-white/5 transition-all" data-filter="ai">AI/ML</button>
-                    <button class="filter-btn px-4 py-2 rounded-full border border-white/10 text-white/60 text-xs font-bold uppercase hover:bg-white/5 transition-all" data-filter="data">Data</button>
+                    <button
+                        class="filter-btn active px-4 py-2 rounded-full border border-primary bg-primary text-black text-xs font-bold uppercase transition-all"
+                        data-filter="all">All</button>
+                    <button
+                        class="filter-btn px-4 py-2 rounded-full border border-white/10 text-white/60 text-xs font-bold uppercase hover:bg-white/5 transition-all"
+                        data-filter="ai">AI/ML</button>
+                    <button
+                        class="filter-btn px-4 py-2 rounded-full border border-white/10 text-white/60 text-xs font-bold uppercase hover:bg-white/5 transition-all"
+                        data-filter="data">Data</button>
                 </div>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
-                <div class="group glass-card rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 project-card" data-category="ai" data-aos="fade-up">
+                <div class="group glass-card rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 project-card"
+                    data-category="ai" data-aos="fade-up">
                     <div class="h-56 overflow-hidden relative">
-                        <img src="https://placehold.co/600x400/1a1a1a/00e1ff?text=NLP+Model" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="NLP">
-                        <a href="project-nlp.html" class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer"><span class="text-primary font-bold tracking-wider border border-primary px-4 py-2 rounded-full hover:bg-primary hover:text-black transition-colors">VIEW PROJECT</span></a>
+                        <img src="https://placehold.co/600x400/1a1a1a/00e1ff?text=Marketing+ML"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            alt="Marketing Campaign Prediction">
+                        <a href="project-campaign.html"
+                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer"><span
+                                class="text-primary font-bold tracking-wider border border-primary px-4 py-2 rounded-full hover:bg-primary hover:text-black transition-colors">VIEW
+                                PROJECT</span></a>
                     </div>
                     <div class="p-8">
-                        <span class="text-primary text-xs font-bold uppercase tracking-wider">AI / Machine Learning</span>
-                        <h3 class="text-xl font-bold text-white mt-2 mb-3 font-heading">Automated Document Classifier</h3>
-                        <p class="text-text-body text-sm mb-6 leading-relaxed">Engineered a BERT-based classification pipeline that reduced manual document processing time by 40%.</p>
-                        <a href="project-nlp.html" class="inline-flex items-center gap-2 text-white text-xs font-bold uppercase tracking-wide hover:text-primary transition-colors">View Case Study <i class="fas fa-arrow-right text-primary"></i></a>
+                        <span class="text-primary text-xs font-bold uppercase tracking-wider">Machine Learning /
+                            R</span>
+                        <h3 class="text-xl font-bold text-white mt-2 mb-3 font-heading">Marketing Campaign Prediction
+                        </h3>
+                        <p class="text-text-body text-sm mb-6 leading-relaxed">Built a multi-model predictive system
+                            using Decision Tree, Logistic Regression & KNN to identify high-propensity customers,
+                            achieving ~87% accuracy.</p>
+                        <a href="project-campaign.html"
+                            class="inline-flex items-center gap-2 text-white text-xs font-bold uppercase tracking-wide hover:text-primary transition-colors">View
+                            Case Study <i class="fas fa-arrow-right text-primary"></i></a>
                     </div>
                 </div>
-                <div class="group glass-card rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 project-card" data-category="data" data-aos="fade-up" data-aos-delay="100">
+                <div class="group glass-card rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 project-card"
+                    data-category="data" data-aos="fade-up" data-aos-delay="100">
                     <div class="h-56 overflow-hidden relative">
-                        <img src="https://placehold.co/600x400/1a1a1a/00e1ff?text=Sales+Dash" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Sales">
-                        <a href="project-sales.html" class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer"><span class="text-primary font-bold tracking-wider border border-primary px-4 py-2 rounded-full hover:bg-primary hover:text-black transition-colors">VIEW PROJECT</span></a>
+                        <img src="https://placehold.co/600x400/1a1a1a/00e1ff?text=Sales+Dash"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            alt="Sales">
+                        <a href="project-sales.html"
+                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer"><span
+                                class="text-primary font-bold tracking-wider border border-primary px-4 py-2 rounded-full hover:bg-primary hover:text-black transition-colors">VIEW
+                                PROJECT</span></a>
                     </div>
                     <div class="p-8">
                         <span class="text-primary text-xs font-bold uppercase tracking-wider">Analytics</span>
-                        <h3 class="text-xl font-bold text-white mt-2 mb-3 font-heading">Revenue Intelligence Dashboard</h3>
-                        <p class="text-text-body text-sm mb-6 leading-relaxed">Designed an interactive Power BI dashboard that identified $120k in underperforming inventory.</p>
-                        <a href="project-sales.html" class="inline-flex items-center gap-2 text-white text-xs font-bold uppercase tracking-wide hover:text-primary transition-colors">View Case Study <i class="fas fa-arrow-right text-primary"></i></a>
+                        <h3 class="text-xl font-bold text-white mt-2 mb-3 font-heading">Revenue Intelligence Dashboard
+                        </h3>
+                        <p class="text-text-body text-sm mb-6 leading-relaxed">Designed an interactive Power BI
+                            dashboard that identified $120k in underperforming inventory.</p>
+                        <a href="project-sales.html"
+                            class="inline-flex items-center gap-2 text-white text-xs font-bold uppercase tracking-wide hover:text-primary transition-colors">View
+                            Case Study <i class="fas fa-arrow-right text-primary"></i></a>
                     </div>
                 </div>
-                <div class="group glass-card rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 project-card" data-category="research" data-aos="fade-up" data-aos-delay="200">
+                <div class="group glass-card rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 project-card"
+                    data-category="research" data-aos="fade-up" data-aos-delay="200">
                     <div class="h-56 overflow-hidden relative">
-                        <img src="https://placehold.co/600x400/1a1a1a/00e1ff?text=Research" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Research">
-                        <a href="project-research.html" class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer"><span class="text-primary font-bold tracking-wider border border-primary px-4 py-2 rounded-full hover:bg-primary hover:text-black transition-colors">VIEW PROJECT</span></a>
+                        <img src="https://placehold.co/600x400/1a1a1a/00e1ff?text=Research"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            alt="Research">
+                        <a href="project-research.html"
+                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer"><span
+                                class="text-primary font-bold tracking-wider border border-primary px-4 py-2 rounded-full hover:bg-primary hover:text-black transition-colors">VIEW
+                                PROJECT</span></a>
                     </div>
                     <div class="p-8">
                         <span class="text-primary text-xs font-bold uppercase tracking-wider">Research</span>
                         <h3 class="text-xl font-bold text-white mt-2 mb-3 font-heading">Consumer Behavior Analysis</h3>
-                        <p class="text-text-body text-sm mb-6 leading-relaxed">Published comprehensive mixed-methods research on digital purchasing patterns.</p>
-                        <a href="project-research.html" class="inline-flex items-center gap-2 text-white text-xs font-bold uppercase tracking-wide hover:text-primary transition-colors">View Case Study <i class="fas fa-arrow-right text-primary"></i></a>
+                        <p class="text-text-body text-sm mb-6 leading-relaxed">Published comprehensive mixed-methods
+                            research on digital purchasing patterns.</p>
+                        <a href="project-research.html"
+                            class="inline-flex items-center gap-2 text-white text-xs font-bold uppercase tracking-wide hover:text-primary transition-colors">View
+                            Case Study <i class="fas fa-arrow-right text-primary"></i></a>
                     </div>
                 </div>
-                <div class="group glass-card rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 project-card" data-category="ai" data-aos="fade-up">
+                <div class="group glass-card rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 project-card"
+                    data-category="ai" data-aos="fade-up">
                     <div class="h-56 overflow-hidden relative">
-                        <img src="https://placehold.co/600x400/1a1a1a/00e1ff?text=Computer+Vision" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="CV">
-                        <a href="project-vision.html" class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer"><span class="text-primary font-bold tracking-wider border border-primary px-4 py-2 rounded-full hover:bg-primary hover:text-black transition-colors">VIEW PROJECT</span></a>
+                        <img src="https://placehold.co/600x400/1a1a1a/00e1ff?text=Computer+Vision"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            alt="CV">
+                        <a href="project-vision.html"
+                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer"><span
+                                class="text-primary font-bold tracking-wider border border-primary px-4 py-2 rounded-full hover:bg-primary hover:text-black transition-colors">VIEW
+                                PROJECT</span></a>
                     </div>
                     <div class="p-8">
                         <span class="text-primary text-xs font-bold uppercase tracking-wider">Computer Vision</span>
                         <h3 class="text-xl font-bold text-white mt-2 mb-3 font-heading">Manufacturing QC System</h3>
-                        <p class="text-text-body text-sm mb-6 leading-relaxed">Deployed a YOLOv8 object detection model to edge devices, decreasing production line defect rates.</p>
-                        <a href="project-vision.html" class="inline-flex items-center gap-2 text-white text-xs font-bold uppercase tracking-wide hover:text-primary transition-colors">View Case Study <i class="fas fa-arrow-right text-primary"></i></a>
+                        <p class="text-text-body text-sm mb-6 leading-relaxed">Deployed a YOLOv8 object detection model
+                            to edge devices, decreasing production line defect rates.</p>
+                        <a href="project-vision.html"
+                            class="inline-flex items-center gap-2 text-white text-xs font-bold uppercase tracking-wide hover:text-primary transition-colors">View
+                            Case Study <i class="fas fa-arrow-right text-primary"></i></a>
                     </div>
                 </div>
-                <div class="group glass-card rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 project-card" data-category="data" data-aos="fade-up" data-aos-delay="100">
+                <div class="group glass-card rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 project-card"
+                    data-category="data" data-aos="fade-up" data-aos-delay="100">
                     <div class="h-56 overflow-hidden relative">
-                        <img src="https://placehold.co/600x400/1a1a1a/00e1ff?text=ETL" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="ETL">
-                        <a href="project-etl.html" class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer"><span class="text-primary font-bold tracking-wider border border-primary px-4 py-2 rounded-full hover:bg-primary hover:text-black transition-colors">VIEW PROJECT</span></a>
+                        <img src="https://placehold.co/600x400/1a1a1a/00e1ff?text=ETL"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            alt="ETL">
+                        <a href="project-etl.html"
+                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer"><span
+                                class="text-primary font-bold tracking-wider border border-primary px-4 py-2 rounded-full hover:bg-primary hover:text-black transition-colors">VIEW
+                                PROJECT</span></a>
                     </div>
                     <div class="p-8">
                         <span class="text-primary text-xs font-bold uppercase tracking-wider">Data Engineering</span>
-                        <h3 class="text-xl font-bold text-white mt-2 mb-3 font-heading">High-Throughput ETL Pipeline</h3>
-                        <p class="text-text-body text-sm mb-6 leading-relaxed">Architected a fault-tolerant Python/SQL pipeline processing 10M+ daily records.</p>
-                        <a href="project-etl.html" class="inline-flex items-center gap-2 text-white text-xs font-bold uppercase tracking-wide hover:text-primary transition-colors">View Case Study <i class="fas fa-arrow-right text-primary"></i></a>
+                        <h3 class="text-xl font-bold text-white mt-2 mb-3 font-heading">High-Throughput ETL Pipeline
+                        </h3>
+                        <p class="text-text-body text-sm mb-6 leading-relaxed">Architected a fault-tolerant Python/SQL
+                            pipeline processing 10M+ daily records.</p>
+                        <a href="project-etl.html"
+                            class="inline-flex items-center gap-2 text-white text-xs font-bold uppercase tracking-wide hover:text-primary transition-colors">View
+                            Case Study <i class="fas fa-arrow-right text-primary"></i></a>
                     </div>
                 </div>
-                <div class="group glass-card rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 project-card" data-category="research" data-aos="fade-up" data-aos-delay="200">
+                <div class="group glass-card rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 project-card"
+                    data-category="research" data-aos="fade-up" data-aos-delay="200">
                     <div class="h-56 overflow-hidden relative">
-                        <img src="https://placehold.co/600x400/1a1a1a/00e1ff?text=AI+Ethics" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Ethics">
-                        <a href="project-ethics.html" class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer"><span class="text-primary font-bold tracking-wider border border-primary px-4 py-2 rounded-full hover:bg-primary hover:text-black transition-colors">VIEW PROJECT</span></a>
+                        <img src="https://placehold.co/600x400/1a1a1a/00e1ff?text=AI+Ethics"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            alt="Ethics">
+                        <a href="project-ethics.html"
+                            class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer"><span
+                                class="text-primary font-bold tracking-wider border border-primary px-4 py-2 rounded-full hover:bg-primary hover:text-black transition-colors">VIEW
+                                PROJECT</span></a>
                     </div>
                     <div class="p-8">
                         <span class="text-primary text-xs font-bold uppercase tracking-wider">Research</span>
                         <h3 class="text-xl font-bold text-white mt-2 mb-3 font-heading">AI Ethics Framework</h3>
-                        <p class="text-text-body text-sm mb-6 leading-relaxed">Authored a bias mitigation framework adopted by the university research board.</p>
-                        <a href="project-ethics.html" class="inline-flex items-center gap-2 text-white text-xs font-bold uppercase tracking-wide hover:text-primary transition-colors">View Case Study <i class="fas fa-arrow-right text-primary"></i></a>
+                        <p class="text-text-body text-sm mb-6 leading-relaxed">Authored a bias mitigation framework
+                            adopted by the university research board.</p>
+                        <a href="project-ethics.html"
+                            class="inline-flex items-center gap-2 text-white text-xs font-bold uppercase tracking-wide hover:text-primary transition-colors">View
+                            Case Study <i class="fas fa-arrow-right text-primary"></i></a>
                     </div>
                 </div>
             </div>
@@ -330,20 +640,32 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <span class="text-primary font-bold uppercase tracking-widest text-sm mb-4 block">Get in Touch</span>
-                <h2 class="text-5xl md:text-7xl font-art font-bold text-white">LET'S WORK <span class="text-primary">TOGETHER</span></h2>
+                <h2 class="text-5xl md:text-7xl font-art font-bold text-white">LET'S WORK <span
+                        class="text-primary">TOGETHER</span></h2>
             </div>
 
             <div class="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
                 <div class="space-y-8" data-aos="fade-right">
-                    <p class="text-xl text-gray-400">Have a project in mind? Looking for a data expert? Fill out the form or reach out directly.</p>
+                    <p class="text-xl text-gray-400">Have a project in mind? Looking for a data expert? Fill out the
+                        form or reach out directly.</p>
                     <div class="flex flex-col gap-4">
                         <div class="flex items-center gap-4 text-white">
-                            <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-primary"><i class="fas fa-envelope"></i></div>
-                            <div><p class="text-sm text-gray-500">Email</p><p class="text-lg font-bold">akinlabiakinkunmi100@gmail.com</p></div>
+                            <div
+                                class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-primary">
+                                <i class="fas fa-envelope"></i></div>
+                            <div>
+                                <p class="text-sm text-gray-500">Email</p>
+                                <p class="text-lg font-bold">akinlabiakinkunmi100@gmail.com</p>
+                            </div>
                         </div>
                         <div class="flex items-center gap-4 text-white">
-                            <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-primary"><i class="fab fa-linkedin"></i></div>
-                            <div><p class="text-sm text-gray-500">LinkedIn</p><p class="text-lg font-bold">Akinkunmi Akinlabi</p></div>
+                            <div
+                                class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-primary">
+                                <i class="fab fa-linkedin"></i></div>
+                            <div>
+                                <p class="text-sm text-gray-500">LinkedIn</p>
+                                <p class="text-lg font-bold">Akinkunmi Akinlabi</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -360,9 +682,12 @@
                         </div>
                         <div>
                             <label class="block text-sm text-gray-400 mb-2">Message</label>
-                            <textarea name="message" rows="4" class="form-input" placeholder="Tell me about your project..." required></textarea>
+                            <textarea name="message" rows="4" class="form-input"
+                                placeholder="Tell me about your project..." required></textarea>
                         </div>
-                        <button type="submit" class="w-full py-4 bg-primary text-dark font-bold uppercase tracking-widest rounded hover:bg-white transition-colors">Send Message</button>
+                        <button type="submit"
+                            class="w-full py-4 bg-primary text-dark font-bold uppercase tracking-widest rounded hover:bg-white transition-colors">Send
+                            Message</button>
                     </form>
                 </div>
             </div>
@@ -377,8 +702,8 @@
     <script>
         AOS.init({ duration: 800, once: true });
         window.addEventListener("load", () => { const preloader = document.getElementById("preloader"); preloader.style.opacity = "0"; setTimeout(() => preloader.style.display = "none", 500); });
-        window.onscroll = function() { let winScroll = document.body.scrollTop || document.documentElement.scrollTop; let height = document.documentElement.scrollHeight - document.documentElement.clientHeight; document.getElementById("scroll-progress").style.width = (winScroll / height) * 100 + "%"; };
-        
+        window.onscroll = function () { let winScroll = document.body.scrollTop || document.documentElement.scrollTop; let height = document.documentElement.scrollHeight - document.documentElement.clientHeight; document.getElementById("scroll-progress").style.width = (winScroll / height) * 100 + "%"; };
+
         // Typewriter
         const typeText = document.getElementById('typewriter');
         const roles = ["Lead Data Architect", "AI Engineer", "Researcher", "Problem Solver"];
@@ -386,9 +711,9 @@
         function typeWriter() {
             if (!typeText) return;
             const current = roles[roleIndex];
-            if (isDeleting) { typeText.textContent = current.substring(0, charIndex--); typeSpeed = 50; } 
+            if (isDeleting) { typeText.textContent = current.substring(0, charIndex--); typeSpeed = 50; }
             else { typeText.textContent = current.substring(0, charIndex++); typeSpeed = 100; }
-            if (!isDeleting && charIndex === current.length) { isDeleting = true; typeSpeed = 2000; } 
+            if (!isDeleting && charIndex === current.length) { isDeleting = true; typeSpeed = 2000; }
             else if (isDeleting && charIndex === 0) { isDeleting = false; roleIndex = (roleIndex + 1) % roles.length; typeSpeed = 500; }
             setTimeout(typeWriter, typeSpeed);
         }
@@ -398,7 +723,7 @@
         const mobileToggle = document.getElementById('mobile-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
-        if(mobileToggle && mobileMenu) {
+        if (mobileToggle && mobileMenu) {
             mobileToggle.addEventListener('click', () => { mobileMenu.classList.toggle('opacity-0'); mobileMenu.classList.toggle('pointer-events-none'); });
             mobileLinks.forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('opacity-0'); mobileMenu.classList.add('pointer-events-none'); }); });
         }
@@ -422,4 +747,5 @@
         });
     </script>
 </body>
+
 </html>

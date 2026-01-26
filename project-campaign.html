@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Campaign Prediction | Akinkunmi Akinlabi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { primary: '#00e1ff', dark: '#050505', 'dark-card': '#121212' },
+                    fontFamily: { sans: ['Space Grotesk', 'sans-serif'], heading: ['Outfit', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&family=Space+Grotesk:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body class="bg-dark text-gray-300 font-sans">
+
+    <nav class="py-6 px-8 border-b border-white/10 flex justify-between items-center">
+        <a href="index.html" class="text-white font-bold text-xl hover:text-primary transition">← Back to Portfolio</a>
+    </nav>
+
+    <header class="py-20 px-6 max-w-4xl mx-auto text-center">
+        <span class="text-primary tracking-widest uppercase text-sm font-bold">Machine Learning / R</span>
+        <h1 class="text-5xl md:text-6xl font-heading text-white font-bold mt-4 mb-8">Marketing Campaign Response
+            Prediction</h1>
+        <p class="text-xl text-gray-400 leading-relaxed">Built a multi-model predictive analytics system to identify
+            customers most likely to respond to marketing campaigns, enabling data-driven targeting strategies and
+            optimizing marketing ROI.</p>
+    </header>
+
+    <!-- Hero Image / Dashboard Preview -->
+    <div class="max-w-6xl mx-auto px-6 mb-20">
+        <div
+            class="aspect-video bg-dark-card rounded-2xl border border-white/10 overflow-hidden relative flex items-center justify-center">
+            <div class="text-center p-8">
+                <i class="fas fa-chart-line text-6xl text-primary/50 mb-4"></i>
+                <p class="text-gray-500">Interactive Power BI Dashboard</p>
+                <p class="text-sm text-gray-600 mt-2">Coming soon — Publish to Power BI Service to enable embedding</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-6 grid md:grid-cols-3 gap-12 mb-20">
+        <div class="md:col-span-2 space-y-12">
+            <section>
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">The Challenge</h2>
+                <p>A retail company was spending significant marketing budget on broad campaigns with low conversion
+                    rates. They needed a way to identify which customers were most likely to respond positively to
+                    marketing efforts, allowing them to:</p>
+                <ul class="list-disc pl-5 mt-4 space-y-2 text-gray-400">
+                    <li>Reduce wasted marketing spend on unresponsive customers</li>
+                    <li>Increase campaign conversion rates through targeted outreach</li>
+                    <li>Understand customer segments and their behavioral patterns</li>
+                    <li>Make data-driven decisions for future campaign strategies</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">The Approach</h2>
+                <p class="mb-4">I developed a comprehensive analytics pipeline using R, combining multiple machine
+                    learning approaches to maximize predictive accuracy and business insights:</p>
+
+                <div class="space-y-6">
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">1. Data Engineering & Cleaning</h3>
+                        <p class="text-sm text-gray-400 mt-1">Extracted data from MySQL database, handled outliers using
+                            IQR method, encoded categorical variables (Education, Marital Status), and performed feature
+                            engineering.</p>
+                    </div>
+
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">2. Exploratory Data Analysis</h3>
+                        <p class="text-sm text-gray-400 mt-1">Analyzed response rates across demographics, created
+                            correlation matrices, visualized distributions using ggplot2, and identified key predictive
+                            features.</p>
+                    </div>
+
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">3. Predictive Modeling</h3>
+                        <p class="text-sm text-gray-400 mt-1">Implemented and compared three classification models:</p>
+                        <ul class="list-disc pl-5 mt-2 text-sm text-gray-500">
+                            <li><strong class="text-gray-300">Decision Tree (rpart)</strong> — Interpretable rules for
+                                business stakeholders</li>
+                            <li><strong class="text-gray-300">Logistic Regression</strong> — Statistical significance of
+                                predictors</li>
+                            <li><strong class="text-gray-300">K-Nearest Neighbors</strong> — Non-parametric pattern
+                                recognition</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">4. Customer Segmentation</h3>
+                        <p class="text-sm text-gray-400 mt-1">Applied K-means clustering and hierarchical clustering to
+                            identify 3 distinct customer segments based on income, purchasing behavior, and web
+                            engagement patterns.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Key Results</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 border-t border-white/10 pt-6">
+                    <div class="text-center">
+                        <span class="block text-3xl font-bold text-primary">~87%</span>
+                        <span class="text-sm text-gray-500">Accuracy</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="block text-3xl font-bold text-primary">0.76</span>
+                        <span class="text-sm text-gray-500">ROC-AUC</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="block text-3xl font-bold text-primary">3</span>
+                        <span class="text-sm text-gray-500">Customer Segments</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="block text-3xl font-bold text-primary">2×</span>
+                        <span class="text-sm text-gray-500">Targeting Efficiency</span>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Business Impact</h2>
+                <div class="bg-dark-card p-6 rounded-xl border border-white/10">
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-primary mt-1"></i>
+                            <span><strong class="text-white">Targeted Marketing:</strong> Identified high-propensity
+                                customers, enabling focused campaign efforts</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-primary mt-1"></i>
+                            <span><strong class="text-white">Customer Insights:</strong> Revealed distinct segments with
+                                different purchasing behaviors and demographics</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-primary mt-1"></i>
+                            <span><strong class="text-white">Actionable Rules:</strong> Decision tree provided
+                                interpretable business rules for the marketing team</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-primary mt-1"></i>
+                            <span><strong class="text-white">Interactive Dashboard:</strong> Power BI visualization for
+                                ongoing campaign monitoring and analysis</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <div class="space-y-8">
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10">
+                <h3 class="text-white font-bold mb-4">Tech Stack</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span
+                        class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">R</span>
+                    <span
+                        class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">ggplot2</span>
+                    <span
+                        class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">caret</span>
+                    <span
+                        class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">rpart</span>
+                    <span
+                        class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">pROC</span>
+                    <span
+                        class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">cluster</span>
+                    <span
+                        class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">MySQL</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Power
+                        BI</span>
+                </div>
+            </div>
+
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10">
+                <h3 class="text-white font-bold mb-4">Methods Used</h3>
+                <ul class="text-sm text-gray-400 space-y-2">
+                    <li class="flex items-center gap-2"><i class="fas fa-tree text-primary text-xs"></i> Decision Tree
+                        Classification</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-chart-line text-primary text-xs"></i> Logistic
+                        Regression</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-users text-primary text-xs"></i> K-Nearest
+                        Neighbors</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-object-group text-primary text-xs"></i> K-Means
+                        Clustering</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-sitemap text-primary text-xs"></i> Hierarchical
+                        Clustering</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-balance-scale text-primary text-xs"></i>
+                        ROC-AUC Evaluation</li>
+                </ul>
+            </div>
+
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10">
+                <h3 class="text-white font-bold mb-4">Project Links</h3>
+                <a href="#"
+                    class="block w-full text-center py-3 bg-white text-black font-bold rounded hover:bg-gray-200 transition mb-3">View
+                    Code on GitHub</a>
+                <a href="Marketing Campaign Prediction Report.pdf" target="_blank"
+                    class="block w-full text-center py-3 border border-primary text-primary font-bold rounded hover:bg-primary hover:text-black transition">Download
+                    Full Report</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-10 border-t border-white/10 text-center">
+        <p class="text-white/30 text-xs">© 2025 Akinkunmi Akinlabi.</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,516 @@
+---
+title: "campaignproject"
+author: "Akin"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r}
+# load the required packages
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(tree) 
+library(rpart) 
+library(caret) 
+library(stats)
+library(class)
+library(dendextend)
+library(colorspace)
+library(corrplot)
+library(pROC)
+library(cluster)
+library(factoextra)
+library(DBI)
+library(RMySQL)
+
+
+#extraction of the dataset
+USER <- 'root'          
+PASSWORD <- 'harkinkunmsey'
+HOST <- 'localhost'
+DBNAME <- 'world'
+
+
+# run queries
+db <- dbConnect(MySQL(), user = USER, password = PASSWORD, 
+                host = HOST, dbname = DBNAME, port=3306) # connect to database
+
+clean_data <- dbGetQuery(db, statement = "Select * from world.marketingcampaign")
+
+dbDisconnect(db)
+
+
+```
+
+
+## Data Cleaing
+```{r}
+# dimension of the data
+dim(clean_data)
+```
+
+
+```{r}
+#structure of the dataset
+str(clean_data)
+```
+
+
+```{r}
+# data types of each variables
+sapply(clean_data, class)
+```
+
+
+```{r}
+# brief overview of the dataset
+head(clean_data)
+```
+
+
+```{r}
+# descriptive analysis of the dataset
+summary(clean_data)
+```
+
+
+```{r}
+## Data Cleaning and Wrangling
+# check for any missing value
+sum(is.na(clean_data))
+```
+
+
+
+```{r}
+#checking the response variable
+cbind(freq = table(clean_data$Response), per=prop.table(table(clean_data$Response))*100)
+```
+
+
+## viz EDA
+```{r}
+#viz EDA
+# visualisation of Education of the Respondent
+ggplot(clean_data, aes(x = Education)) +
+  geom_bar(position = "dodge", color = "Green", fill = "blue")+
+  labs(title = "Education of the Respondent",
+       x = "Education",
+       y = "Frequency",
+       fill = "Response")
+```
+
+
+```{r}
+#comparison of Marital Status to those that responded to the campaigne
+ggplot(clean_data) + geom_bar(aes(x=MaritalStatus, fill = Response), fill="green")+coord_flip() +
+  theme(axis.text.y=element_text(size=rel(0.8)))
+```
+
+
+```{r}
+# visualisation of the Response Variable
+barplot(table(clean_data$Response))
+```
+
+
+```{r}
+# education and campaign response
+table(clean_data$Education, clean_data$Response)
+```
+
+
+```{r}
+# Marital_Status and campaign response
+table(clean_data$MaritalStatus, clean_data$Response)
+```
+
+
+```{r}
+# correlation of all the numerical columns to campaign response
+correlation <- cor(clean_data[,sapply(clean_data, is.numeric)])
+correlation
+corrplot(correlation, method="circle")
+```
+
+
+```{r}
+# check if there is outlier in income
+boxplot(main_df$Income)
+```
+
+
+```{r}
+boxplot(Income ~ Response, data = main_df)
+```
+
+
+```{r}
+hist(clean_data$Income,
+     main="Income distribution ",
+     xlab="Loss",
+     border="blue",
+     col="red",
+     prob =TRUE)
+```
+
+
+```{r}
+#checking outlier in year of birth and level of income
+boxplot(clean_data$Year_Birth)
+```
+
+
+## fixing the outlier
+```{r}
+# fixing the outlier
+# fixing outlier from the income column
+remove_outlier <- function(x) {
+  q <- quantile(x, probs = c(0.25, 0.75))
+  iqr <- IQR(x)
+  # lb = lower bound and ub = upper bound
+  lb <- q[1] - 1.5 * iqr
+  ub <- q[2] + 1.5 * iqr
+  x[x < lb | x > ub] <- median(x, na.rm = TRUE)
+  return(x)
+}
+
+# function call
+clean_data$Income <- remove_outlier(clean_data$Income)
+```
+
+
+```{r}
+# for year of birth
+clean_data <- clean_data[clean_data$Year_Birth > 1900, ]
+boxplot(clean_data$Year_Birth)
+```
+
+
+```{r}
+# using dplyr to remove irrelevant column
+clean_data <- dplyr::select(.data = clean_data, -ID)
+```
+
+
+## Feature Engineering
+```{r}
+##Feature Engineering
+
+#Encoding categorical variables. 
+clean_data$Education <- factor(clean_data$Education, levels = c("2n Cycle", "Basic", "Graduation", "Master", "PhD"),
+                               labels = c(1,2,3,4,5)
+                               )
+
+clean_data$MaritalStatus <- factor(clean_data$MaritalStatus, levels = c("Absurd", "Alone", "Divorced", "Married", "Single", "Together", "Widow", "YOLO"),
+                               labels = c(1,2,3,4,5,6,7,8)
+                              )
+
+# Convert 1, 0 to Yes, No
+clean_data$Response <- ifelse(clean_data$Response == 1, "Yes", "No")
+
+clean_data$Response <- factor(clean_data$Response)
+```
+
+
+# Model Building
+
+### Decision Tree
+```{r}
+#Decision Tree
+
+# Set the fixed state for the random number generation
+set.seed(20)
+
+# Create a sample vector of row indices
+sample <- sample(nrow(clean_data), 0.8*nrow(clean_data))
+
+# Split data into training and testing sets
+train_data <- clean_data[sample,]
+test_data <- clean_data[-sample,]
+
+# check the number in each class
+table(train_data$Response)
+table(test_data$Response)
+
+# Model Building on train data set
+class_mod1 = rpart(Response ~ ., data = train_data)
+
+# Prediction on test data set for the class
+class_pred_test = predict(class_mod1, test_data, type = 'class')
+
+# Making Confusion matrix
+caret::confusionMatrix(class_pred_test, test_data$Response, positive = "Yes")
+```
+
+
+```{r}
+# ROC AUC prediction
+tree_trainControl <- trainControl(method="cv", number=2, classProbs=TRUE,
+                             summaryFunction=twoClassSummary)
+
+tree_train <- train(Response~., data=train_data, method="rpart", metric="ROC",
+             trControl=tree_trainControl)
+
+tree_predictions <- predict(tree_train, newdata = test_data, type="prob")
+
+tree_predicted_probs <- tree_predictions[, 2]
+
+# replace the positive label with 1 and else 0
+tree_positive_labels <- ifelse(test_data$Response == "Yes", 1, 0)
+
+tree_roc_curve <- roc(tree_positive_labels, tree_predicted_probs)
+tree_auc_value <- auc(tree_roc_curve)
+print(tree_auc_value)
+
+
+```
+
+
+###  Logistic Regression
+```{r}
+#Logistic Regression
+# Build logistic regression model
+log_model <- glm(Response ~ ., data = train_data, family = binomial)
+summary(log_model)
+exp(coef(log_model))
+
+
+train_data$Probs <- predict(object = log_model, data = train_data, type="response")
+
+# checking if the prob has been added
+head(train_data)
+
+# making it a class prediction
+train_data$ClassPredict <- ifelse(train_data$Probs > 0.5, "Yes", "No")
+
+#Confusion matrix of results for Train
+table(Actual = train_data$Response, Predicted = train_data$ClassPredict)
+```
+
+
+```{r}
+#  percentage of correctness?
+mean(train_data$ClassPredict == train_data$Response)
+```
+
+
+```{r}
+# Make predictions on test data
+test_data$Response <- factor(test_data$Response, levels = c("No", "Yes"))
+test_data$prob <- predict(log_model, newdata = test_data, type = "response")
+test_data$ClassPred <- ifelse(test_data$prob > 0.5, "Yes", "No")
+test_data$ClassPred<- factor(test_data$ClassPred, levels = c("No", "Yes"))
+
+
+table(Actual=test_data$Response, Predicted = test_data$ClassPred)
+```
+
+
+```{r}
+mean(test_data$ClassPred == test_data$Response)
+```
+
+
+```{r}
+# Confusion matrix
+caret::confusionMatrix(test_data$ClassPred, test_data$Response, positive = "Yes")
+```
+
+
+```{r}
+# resampling for ROC_AUC
+log_trainControl <- trainControl(method="cv", number=2, classProbs=TRUE,
+                             summaryFunction=twoClassSummary)
+
+# ROC_AUC metrics
+
+# re-assignment
+train_data <- clean_data[sample,]
+test_data <- clean_data[-sample,]
+
+log_train <- train(Response~., data=train_data, method="glm", metric="ROC",
+                   trControl=log_trainControl)
+
+log_predictions <- predict(log_train, newdata = test_data, type="prob")
+
+predicted_probs <- log_predictions[, 2]
+
+# replace the positive label with 1 and else 0
+positive_labels <- ifelse(test_data$Response == "Yes", 1, 0)
+
+roc_curve <- roc(positive_labels, predicted_probs)
+auc_value <- auc(roc_curve)
+print(auc_value)
+
+
+```
+
+
+### k Nearest Neighbours
+
+```{r}
+#k Nearest Neighbours
+# Build KNN model
+knn_model <- train(form = Response ~.,
+                   data = train_data,
+                   method = 'knn') 
+#plot the model
+plot(knn_model)
+```
+
+
+```{r}
+# Making prediction on the test
+knn_test_Pred <- predict(object= knn_model, newdata = test_data, type = "raw")  
+mean(knn_test_Pred == test_data$Response)
+```
+
+
+```{r}
+confusionMatrix(data = knn_test_Pred, reference = test_data$Response)
+```
+
+
+```{r}
+# ROC_AUC
+# making prediction on the test
+pred <- predict(object = knn_model, newdata = test_data, type = "prob") 
+pred <- pred[,2]
+KnnROC <- roc(response = test_data$Response, predictor = pred)
+knn_auc_value <- auc(KnnROC)
+print(knn_auc_value)
+```
+
+
+### CLustering
+
+```{r}
+#CLustering
+new_data <- clean_data
+#remove the response column
+new_data$Response <- NULL
+
+# preparing the following variables for scaling
+features <- new_data[, c("Year_Birth", "Income", "NumWebVisitsMonth", "NumStorePurchases",
+                                  "NumWebPurchases")]
+feature_means <- apply(features,2,mean)
+feature_stds <- apply(features,2,sd)
+
+scaled_features <- scale(features,center=feature_means,scale=feature_stds)
+
+# using the dendrogram
+# the distance
+datadist <- dist(x = scaled_features, method = "euclidean")  
+hcdata <- hclust(d = datadist, method = "complete")    
+
+# create dendrogram using the reduced attribute sets
+datadend <- as.dendrogram(hcdata) 
+
+#levels of the campaign variable
+campaignlevels <- rev(levels(clean_data[,9]))
+
+# branches color based on  clusters:
+datadend <- color_branches(dend = datadend, k=3) 
+
+# assign one of the colours to each label ordered by the dendrogram based on campaign response, 
+labels_colors(datadend) <-
+  rainbow_hcl(2)[sort_levels_values(
+    as.numeric(clean_data[,9])[order.dendrogram(datadend)]
+  )]
+
+# combine the response to the labels: ordered by the dendrogram
+labels(datadend) <- paste(as.character(clean_data[,9])[order.dendrogram(datadend)], 
+                          "(",labels(datadend),")",           
+                          sep = "")
+
+# distance between end of dendrogram and the label
+datadend <- hang.dendrogram(datadend,hang_height=0.1)
+
+# label size reduction
+datadend <- set(dend = datadend, what = "labels_cex",value = 0.5)
+
+# And plot:
+par(mar = c(3.5,2.75,3,7))
+plot(datadend, 
+     main = "Natural grouping of Campaigne Response",
+     horiz =  TRUE,   
+     nodePar = list(cex = .006)) 
+legend("topleft", legend = campaignlevels, fill = rainbow_hcl(2))
+```
+
+
+```{r}
+#Using the kmeans algorithm to determine relevant number of k
+Kmeandata <- kmeans(x = scaled_features, center = 3, nstart = 5) # neat right!
+
+# checking the cluster
+table(Response = clean_data$Response, Cluster = Kmeandata$cluster)
+```
+
+
+```{r}
+# kmean cluster viz
+clusplot(scaled_features, Kmeandata$cluster, color = TRUE)
+```
+
+
+```{r}
+#illustration of Clusters
+fviz_cluster(Kmeandata, data = scaled_features)
+```
+
+
+```{r}
+#checking the optimal number of k
+fviz_nbclust(scaled_features, kmeans, method = "wss")
+```
+
+
+```{r}
+#Determining Membership
+member = cutree(hcdata,3)
+table(member)
+```
+
+
+```{r}
+# mean of membership cluster
+aggregate(scaled_features,list(member),mean)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
