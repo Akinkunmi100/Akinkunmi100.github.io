@@ -8,14 +8,16 @@ This project develops a predictive analytics system to identify customers most l
 
 ## 🎯 Business Problem
 
-A retail company was experiencing low conversion rates from broad marketing campaigns. Key challenges included:
+As a data scientist at **BangorTelco**, I was tasked with answering: *"Is there a way to determine in advance which customers are likely to accept the offer in the marketing campaign?"*
+
+Key challenges included:
 
 - **High marketing costs** with low return on investment
 - **No systematic way** to identify responsive customers
 - **Limited understanding** of customer segments and behaviors
 - **Inability to prioritize** marketing efforts effectively
 
-**Goal:** Build a predictive model that accurately identifies customers likely to respond to marketing campaigns, enabling targeted outreach and improved campaign efficiency.
+**Goal:** Build a predictive model using 20,000+ customer records from the company database that the sales team can use to target customers likely to accept offers, reducing marketing costs significantly.
 
 ---
 
@@ -132,9 +134,9 @@ Three distinct customer segments were identified based on:
 
 ```
 ├── Marketing Campaign Prediction.Rmd    # Main R Markdown analysis
-├── Marketing Campaign Prediction Report.pdf  # Full report
+├── Marketing Campaigne Pred Report.pdf  # Full report
 ├── Marketing campaign viz.pbix          # Power BI dashboard
-├── Data Science Projct - Assignment Brief.pdf  # Problem statement
+├── Data Science Projct - Assignment Brief .pdf  # Problem statement
 └── README.md                             # This file
 ```
 
