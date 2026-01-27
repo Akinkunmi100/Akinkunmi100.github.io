@@ -28,14 +28,14 @@
     </nav>
 
     <header class="py-20 px-6 max-w-4xl mx-auto text-center">
-        <span class="text-primary tracking-widest uppercase text-sm font-bold">Machine Learning / Python</span>
+        <span class="text-red-400 tracking-widest uppercase text-sm font-bold">Machine Learning / Python</span>
         <h1 class="text-5xl md:text-6xl font-heading text-white font-bold mt-4 mb-8">Heart Disease Prediction</h1>
-        <p class="text-xl text-gray-400 leading-relaxed">Built an ensemble machine learning system to predict heart
-            disease risk using patient clinical data, achieving 80.9% accuracy through XGBoost, Random Forest, and
-            stacking techniques.</p>
+        <p class="text-xl text-gray-400 leading-relaxed">DSN X Microsoft 2024 AI Bootcamp Qualification Hackathon —
+            Built a machine learning model to predict heart disease risk using patient data, achieving ~80.9% accuracy
+            with LightGBM and ensemble techniques.</p>
     </header>
 
-    <!-- Hero Image / Dashboard Preview -->
+    <!-- Hero Image -->
     <div class="max-w-6xl mx-auto px-6 mb-20">
         <div
             class="aspect-video bg-dark-card rounded-2xl border border-white/10 overflow-hidden relative flex items-center justify-center group">
@@ -45,8 +45,8 @@
             <div class="absolute inset-0 flex items-center justify-center bg-black/40">
                 <div class="text-center p-8 backdrop-blur-sm bg-black/30 rounded-xl border border-white/10">
                     <i class="fas fa-heartbeat text-5xl text-red-400 mb-4"></i>
-                    <p class="text-white font-bold text-xl">DSN Bootcamp 2024 Project</p>
-                    <p class="text-sm text-gray-300 mt-2">Predictive Analytics for Early Heart Disease Detection</p>
+                    <p class="text-white font-bold text-xl">DSN X Microsoft 2024 AI Bootcamp</p>
+                    <p class="text-sm text-gray-300 mt-2">Qualification Hackathon on Zindi</p>
                 </div>
             </div>
         </div>
@@ -55,69 +55,120 @@
     <div class="max-w-4xl mx-auto px-6 grid md:grid-cols-3 gap-12 mb-20">
         <div class="md:col-span-2 space-y-12">
             <section>
-                <h2 class="text-2xl text-white font-bold mb-4 font-heading">The Challenge</h2>
-                <p>The challenge revolves around creating a sophisticated predictive model to determine the likelihood
-                    of an individual having <strong class="text-white">heart disease</strong>. As one of the leading
-                    causes of global mortality, detecting heart disease in its early stages is pivotal for enhancing
-                    patient outcomes and halting its progression.</p>
-                <p class="mt-4 text-gray-400 italic border-l-2 border-red-400 pl-4">Conventional diagnostic methods
-                    often come with substantial costs and time requirements. Thus, there exists a pressing need for a
-                    cutting-edge predictive model that can evaluate the risk of heart disease utilizing easily
-                    accessible patient information.</p>
-                <p class="mt-4">Using data on <strong class="text-primary">10,000 patient records</strong>, the goal was
-                    to design and build a predictive model capable of accurately determining the probability of an
-                    individual having heart disease.</p>
-                <h3 class="text-lg text-white font-bold mt-6 mb-3">Why It Matters</h3>
-                <ul class="list-disc pl-5 mt-4 space-y-2 text-gray-400">
-                    <li><strong class="text-white">Early Intervention:</strong> Timely prediction aids in prevention and
-                        better outcomes</li>
-                    <li><strong class="text-white">Cost Reduction:</strong> Reduces unnecessary diagnostic procedures
-                    </li>
-                    <li><strong class="text-white">Resource Optimization:</strong> Targets healthcare resources
-                        effectively</li>
-                    <li><strong class="text-white">Public Health Impact:</strong> Aggregated insights drive targeted
-                        health efforts</li>
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Background & Problem Statement</h2>
+                <p>Heart disease is a <strong class="text-white">leading cause of death worldwide</strong>. Early
+                    detection and prediction are crucial for timely intervention and improved patient outcomes. Machine
+                    learning techniques have shown promising results in predicting heart disease risk based on
+                    individual patient characteristics.</p>
+                <p class="mt-4 text-gray-400 italic border-l-2 border-red-400 pl-4">This project addresses the problem
+                    of predicting heart disease using a machine learning model trained on a dataset of patient
+                    information. The goal is to develop a model that accurately classifies individuals as having or not
+                    having heart disease.</p>
+
+                <h3 class="text-lg text-white font-bold mt-6 mb-3">Project Objectives</h3>
+                <ul class="list-disc pl-5 space-y-2 text-gray-400">
+                    <li><strong class="text-white">Explore and analyze</strong> the heart disease dataset</li>
+                    <li><strong class="text-white">Preprocess</strong> data, handle missing values, and engineer
+                        features</li>
+                    <li><strong class="text-white">Develop</strong> a machine learning model for prediction</li>
+                    <li><strong class="text-white">Evaluate</strong> performance and compare different algorithms</li>
                 </ul>
             </section>
 
             <section>
-                <h2 class="text-2xl text-white font-bold mb-4 font-heading">The Approach</h2>
-                <p class="mb-4">I developed a comprehensive machine learning pipeline using Python, implementing
-                    multiple algorithms and ensemble techniques:</p>
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Exploratory Data Analysis</h2>
 
                 <div class="space-y-6">
                     <div class="border-l-2 border-red-400 pl-4">
-                        <h3 class="text-white font-bold">1. Data Preprocessing</h3>
-                        <p class="text-sm text-gray-400 mt-1">Concatenated train/test data for unified processing,
-                            handled missing values, performed exploratory data analysis with histograms and correlation
-                            analysis.</p>
-                    </div>
-
-                    <div class="border-l-2 border-red-400 pl-4">
-                        <h3 class="text-white font-bold">2. Feature Engineering</h3>
-                        <p class="text-sm text-gray-400 mt-1">Analyzed 14 clinical features including Age, Blood
-                            Pressure (trestbps), Cholesterol (chol), Max Heart Rate (thalach), and others. Applied
-                            StandardScaler for normalization.</p>
-                    </div>
-
-                    <div class="border-l-2 border-red-400 pl-4">
-                        <h3 class="text-white font-bold">3. Model Development</h3>
-                        <p class="text-sm text-gray-400 mt-1">Implemented and tuned multiple algorithms:</p>
-                        <ul class="list-disc pl-5 mt-2 text-sm text-gray-500">
-                            <li><strong class="text-gray-300">Random Forest</strong> — Best performer with
-                                RandomizedSearchCV tuning</li>
-                            <li><strong class="text-gray-300">XGBoost</strong> — Gradient boosting for improved accuracy
-                            </li>
-                            <li><strong class="text-gray-300">LightGBM</strong> — Fast gradient boosting</li>
-                            <li><strong class="text-gray-300">AdaBoost</strong> — Adaptive boosting ensemble</li>
+                        <h3 class="text-white font-bold">Univariate Analysis Findings</h3>
+                        <ul class="text-sm text-gray-400 mt-2 space-y-1">
+                            <li>• Age distribution slightly right-skewed (most patients middle-aged)</li>
+                            <li>• More male patients than female in dataset</li>
+                            <li>• Most experienced atypical angina or non-anginal pain</li>
+                            <li>• Majority had fasting blood sugar below 120 mg/dl</li>
+                            <li>• <strong class="text-white">Class imbalance</strong> in target variable detected</li>
                         </ul>
                     </div>
 
                     <div class="border-l-2 border-red-400 pl-4">
-                        <h3 class="text-white font-bold">4. Ensemble Stacking</h3>
-                        <p class="text-sm text-gray-400 mt-1">Combined Random Forest, XGBoost, and AdaBoost using
-                            StackingClassifier with a Random Forest meta-model and 5-fold cross-validation for robust
-                            predictions.</p>
+                        <h3 class="text-white font-bold">Bivariate Analysis Insights</h3>
+                        <ul class="text-sm text-gray-400 mt-2 space-y-1">
+                            <li>• <strong class="text-white">Age</strong>: Older patients slightly more susceptible</li>
+                            <li>• <strong class="text-white">Cholesterol</strong>: No clear trend with heart disease
+                            </li>
+                            <li>• <strong class="text-white">Chest pain type</strong>: Asymptomatic = higher likelihood
+                            </li>
+                            <li>• <strong class="text-white">Exercise-induced angina</strong>: Strong risk indicator
+                            </li>
+                            <li>• Chest pain + max heart rate jointly influence risk</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Feature Engineering</h2>
+                <div class="bg-dark-card p-6 rounded-xl border border-white/10">
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-code text-red-400 mt-1"></i>
+                            <span><strong class="text-white">Label Encoding:</strong> Categorical features (sex, chest
+                                pain type, ST slope) transformed for algorithm compatibility</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-layer-group text-red-400 mt-1"></i>
+                            <span><strong class="text-white">Age Binning:</strong> Ages grouped into Young, Adult,
+                                Middle Age, Old for capturing non-linear relationships</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-balance-scale text-red-400 mt-1"></i>
+                            <span><strong class="text-white">SMOTE:</strong> Synthetic Minority Over-sampling Technique
+                                to address class imbalance</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-ruler text-red-400 mt-1"></i>
+                            <span><strong class="text-white">StandardScaler:</strong> Normalization applied across all
+                                numerical features</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Model Building & Comparison</h2>
+
+                <div class="space-y-6">
+                    <div class="border-l-2 border-red-400 pl-4">
+                        <h3 class="text-white font-bold">Models Evaluated</h3>
+                        <div class="grid grid-cols-2 gap-3 mt-3">
+                            <div class="bg-dark-card p-3 rounded-lg border border-white/5 text-center">
+                                <span class="text-white font-bold text-sm">Random Forest</span>
+                            </div>
+                            <div class="bg-dark-card p-3 rounded-lg border border-white/5 text-center">
+                                <span class="text-white font-bold text-sm">XGBoost</span>
+                            </div>
+                            <div class="bg-red-400/20 p-3 rounded-lg border border-red-400/30 text-center">
+                                <span class="text-red-400 font-bold text-sm">LightGBM ★</span>
+                            </div>
+                            <div class="bg-dark-card p-3 rounded-lg border border-white/5 text-center">
+                                <span class="text-white font-bold text-sm">Stacking Ensemble</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-l-2 border-red-400 pl-4">
+                        <h3 class="text-white font-bold">Hyperparameter Tuning</h3>
+                        <p class="text-sm text-gray-400 mt-1"><strong class="text-white">RandomizedSearchCV</strong>
+                            employed for efficient exploration — samples different combinations and evaluates through
+                            cross-validation. Parameters: n_estimators, max_depth, min_samples_split, min_samples_leaf.
+                        </p>
+                    </div>
+
+                    <div class="border-l-2 border-red-400 pl-4">
+                        <h3 class="text-white font-bold">Best Model: LightGBM</h3>
+                        <p class="text-sm text-gray-400 mt-1">Selected for <strong class="text-white">highest
+                                accuracy</strong>, <strong class="text-white">computational efficiency</strong>,
+                            scalability, and effective handling of large datasets.</p>
                     </div>
                 </div>
             </section>
@@ -126,8 +177,8 @@
                 <h2 class="text-2xl text-white font-bold mb-4 font-heading">Key Results</h2>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 border-t border-white/10 pt-6">
                     <div class="text-center">
-                        <span class="block text-3xl font-bold text-red-400">80.9%</span>
-                        <span class="text-sm text-gray-500">Mean Accuracy</span>
+                        <span class="block text-3xl font-bold text-red-400">~80.9%</span>
+                        <span class="text-sm text-gray-500">Model Accuracy</span>
                     </div>
                     <div class="text-center">
                         <span class="block text-3xl font-bold text-red-400">10-Fold</span>
@@ -139,37 +190,31 @@
                     </div>
                     <div class="text-center">
                         <span class="block text-3xl font-bold text-red-400">4</span>
-                        <span class="text-sm text-gray-500">ML Algorithms</span>
+                        <span class="text-sm text-gray-500">Algorithms Compared</span>
                     </div>
                 </div>
             </section>
 
             <section>
-                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Technical Highlights</h2>
-                <div class="bg-dark-card p-6 rounded-xl border border-white/10">
-                    <ul class="space-y-3">
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-red-400 mt-1"></i>
-                            <span><strong class="text-white">Hyperparameter Tuning:</strong> Used RandomizedSearchCV
-                                with parameters for n_estimators, max_depth, min_samples_split, and
-                                min_samples_leaf</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-red-400 mt-1"></i>
-                            <span><strong class="text-white">Cross-Validation:</strong> Implemented 10-fold K-Fold
-                                validation for robust performance estimation</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-red-400 mt-1"></i>
-                            <span><strong class="text-white">Ensemble Learning:</strong> Used StackingClassifier
-                                combining RF, XGBoost, and AdaBoost with 5-fold CV blending</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-red-400 mt-1"></i>
-                            <span><strong class="text-white">Comprehensive EDA:</strong> Univariate and bivariate
-                                analysis using seaborn and matplotlib visualizations</span>
-                        </li>
-                    </ul>
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Conclusions & Recommendations</h2>
+                <div class="space-y-4">
+                    <div class="bg-dark-card p-4 rounded-xl border border-white/10">
+                        <h3 class="text-white font-bold mb-2">Key Predictors Identified</h3>
+                        <p class="text-sm text-gray-400">Age, chest pain type, and exercise-induced angina emerged as
+                            significant predictors. Older patients and those with asymptomatic chest pain or angina
+                            during exercise are more likely to have heart disease.</p>
+                    </div>
+                    <div class="bg-dark-card p-4 rounded-xl border border-white/10">
+                        <h3 class="text-white font-bold mb-2">Recommendations</h3>
+                        <ul class="text-sm text-gray-400 space-y-1">
+                            <li>• <strong class="text-white">Focus on key predictors</strong> for targeted interventions
+                            </li>
+                            <li>• <strong class="text-white">Investigate variable interactions</strong> (max heart rate
+                                + chest pain type)</li>
+                            <li>• <strong class="text-white">Clinical application</strong> for early screening and risk
+                                assessment</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
         </div>
@@ -191,6 +236,8 @@
                     <span
                         class="px-3 py-1 bg-white/5 rounded-full text-xs text-red-400 border border-red-400/20">NumPy</span>
                     <span
+                        class="px-3 py-1 bg-white/5 rounded-full text-xs text-red-400 border border-red-400/20">SMOTE</span>
+                    <span
                         class="px-3 py-1 bg-white/5 rounded-full text-xs text-red-400 border border-red-400/20">Matplotlib</span>
                     <span
                         class="px-3 py-1 bg-white/5 rounded-full text-xs text-red-400 border border-red-400/20">Seaborn</span>
@@ -198,20 +245,47 @@
             </div>
 
             <div class="bg-dark-card p-6 rounded-xl border border-white/10">
-                <h3 class="text-white font-bold mb-4">Clinical Features</h3>
+                <h3 class="text-white font-bold mb-4">Dataset Features</h3>
                 <ul class="text-sm text-gray-400 space-y-2">
-                    <li class="flex items-center gap-2"><i class="fas fa-heart text-red-400 text-xs"></i> Age, Sex</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-user text-red-400 text-xs"></i> Age, Sex</li>
                     <li class="flex items-center gap-2"><i class="fas fa-stethoscope text-red-400 text-xs"></i> Chest
                         Pain Type (cp)</li>
                     <li class="flex items-center gap-2"><i class="fas fa-tint text-red-400 text-xs"></i> Blood Pressure
                         (trestbps)</li>
                     <li class="flex items-center gap-2"><i class="fas fa-vial text-red-400 text-xs"></i> Cholesterol
                         (chol)</li>
-                    <li class="flex items-center gap-2"><i class="fas fa-running text-red-400 text-xs"></i> Max Heart
+                    <li class="flex items-center gap-2"><i class="fas fa-candy-cane text-red-400 text-xs"></i> Fasting
+                        Blood Sugar (fbs)</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-heartbeat text-red-400 text-xs"></i> Max Heart
                         Rate (thalach)</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-running text-red-400 text-xs"></i> Exercise
+                        Angina (exang)</li>
                     <li class="flex items-center gap-2"><i class="fas fa-chart-line text-red-400 text-xs"></i> ST
                         Depression (oldpeak)</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-wave-square text-red-400 text-xs"></i> ST
+                        Slope, ca, thal</li>
                 </ul>
+            </div>
+
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10">
+                <h3 class="text-white font-bold mb-4">Key Risk Factors</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3">
+                        <span
+                            class="bg-red-400 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">1</span>
+                        <span class="text-sm">Age (older patients)</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span
+                            class="bg-red-400 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">2</span>
+                        <span class="text-sm">Chest Pain Type (asymptomatic)</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span
+                            class="bg-red-400 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">3</span>
+                        <span class="text-sm">Exercise-Induced Angina</span>
+                    </div>
+                </div>
             </div>
 
             <div class="bg-dark-card p-6 rounded-xl border border-white/10">

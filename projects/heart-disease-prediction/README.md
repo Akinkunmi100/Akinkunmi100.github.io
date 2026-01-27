@@ -1,171 +1,194 @@
 # ❤️ Heart Disease Prediction
 
-**Data Science Nigeria (DSN) Bootcamp 2024 Classification Challenge**
+**Data Science Nigeria X Microsoft 2024 AI Bootcamp Qualification Hackathon**
 
 ---
 
-## 🎯 The Challenge
+## 🎯 Project Overview
 
-The challenge revolves around creating a sophisticated predictive model to determine the likelihood of an individual having heart disease. As one of the leading causes of global mortality, **detecting heart disease in its early stages is pivotal** for enhancing patient outcomes and halting its progression.
+### Background
+Heart disease is a leading cause of death worldwide. Early detection and prediction of heart disease are crucial for timely intervention and improved patient outcomes. Machine learning techniques have shown promising results in predicting heart disease risk based on individual patient characteristics.
 
-> Conventional diagnostic methods often come with substantial costs and time requirements. Thus, there exists a pressing need for a cutting-edge predictive model that can evaluate the risk of heart disease utilizing easily accessible patient information.
+### Problem Statement
+This project addresses the problem of predicting heart disease using a machine learning model trained on a dataset of patient information. The goal is to develop a model that accurately classifies individuals as having or not having heart disease.
 
-### Objective
-
-Design and build a predictive model capable of accurately determining the probability of an individual having heart disease, focusing on:
-- Leveraging machine learning techniques for reliable predictions
-- Analyzing relevant clinical features
-- Ensuring high accuracy and generalizability on unseen data
-
-### Why It Matters
-
-| Impact Area | Benefit |
-|-------------|---------|
-| **Early Intervention** | Timely prediction aids in prevention |
-| **Cost Reduction** | Reduces unnecessary diagnostic procedures |
-| **Resource Optimization** | Targets healthcare resources effectively |
-| **Public Health** | Aggregated insights drive targeted health efforts |
-| **Research Advancement** | Model insights push medical research forward |
-
-**Dataset**: 10,000 patient records with 14 clinical features  
-**Target**: Binary classification (1 = Heart Disease, 0 = No Heart Disease)
+### Objectives
+- Explore and analyze a heart disease dataset
+- Preprocess the data, handle missing values, and engineer relevant features
+- Develop a machine learning model for heart disease prediction
+- Evaluate the performance of the model and compare different algorithms
 
 ---
 
-## 📊 Dataset Features
+## 📊 Data Collection and Understanding
+
+### Data Source
+The dataset was sourced from **Data Science Nigeria X Microsoft 2024 AI Bootcamp Qualification Hackathon on Zindi**.
+
+### Dataset Overview
+| Metric | Value |
+|--------|-------|
+| Total Records | 10,000 |
+| Training Samples | 7,303 |
+| Test Samples | 2,697 |
+| Features | 14 |
+| Target | Binary (Heart Disease: Yes/No) |
+
+### Feature Descriptions
 
 | Feature | Description |
 |---------|-------------|
-| **Age** | Patient age in years |
-| **Sex** | Gender (1 = Male, 0 = Female) |
-| **cp** | Chest pain type (0-3) |
-| **trestbps** | Resting blood pressure (mm Hg) |
-| **chol** | Serum cholesterol (mg/dl) |
-| **fbs** | Fasting blood sugar > 120 mg/dl |
-| **restecg** | Resting ECG results |
+| **Age** | Age of the patient |
+| **Sex** | Gender (0 = Female, 1 = Male) |
+| **cp** | Chest pain type (0 = Typical Angina, 1 = Atypical Angina, 2 = Non-Anginal Pain, 3 = Asymptomatic) |
+| **trestbps** | Resting blood pressure (mm Hg on admission) |
+| **chol** | Serum cholesterol in mg/dl |
+| **fbs** | Fasting blood sugar > 120 mg/dl (0 = No, 1 = Yes) |
+| **restecg** | Resting ECG results (0 = Normal, 1 = ST-T Abnormality, 2 = LV Hypertrophy) |
 | **thalach** | Maximum heart rate achieved |
-| **exang** | Exercise induced angina |
-| **oldpeak** | ST depression induced by exercise |
-| **slope** | Slope of peak exercise ST segment |
-| **ca** | Number of major vessels (0-4) |
-| **thal** | Thalassemia type |
-| **target** | Heart disease presence (1/0) |
+| **exang** | Exercise-induced angina (0 = No, 1 = Yes) |
+| **oldpeak** | ST depression induced by exercise relative to rest |
+| **slope** | Slope of peak exercise ST segment (0 = Upsloping, 1 = Flat, 2 = Downsloping) |
+| **ca** | Number of major vessels (0-3) colored by fluoroscopy |
+| **thal** | Thalassemia (0 = Normal, 1 = Fixed defect, 2 = Reversable defect) |
+| **target** | Heart disease (0 = No, 1 = Yes) |
+
+---
+
+## 🔍 Exploratory Data Analysis
+
+### Univariate Analysis Findings
+- **Age distribution**: Slightly right-skewed, most patients were middle-aged
+- **Blood pressure**: Relatively normal distribution with few outliers on higher end
+- **Cholesterol levels**: Fairly normal with outliers on both extremes
+- **Maximum heart rate**: Slightly left-skewed with outliers at lower end
+- **Gender**: More male patients than female
+- **Chest pain**: Most patients experienced atypical angina or non-anginal pain
+- **Fasting blood sugar**: Majority had levels below 120 mg/dl
+- **ECG results**: Mostly normal across patient population
+- **Exercise-induced angina**: Relatively rare
+- **ST segment**: Majority had flat or upsloping
+- **Major vessels**: Significant number had no vessels colored by fluoroscopy
+- **Target variable**: **Class imbalance** — more patients without heart disease
+
+### Bivariate Analysis Findings
+- **Age**: Associated with slightly higher risk of heart disease (older patients more susceptible)
+- **Cholesterol**: Did not display clear trend with heart disease
+- **Chest pain type**: Significant indicator — asymptomatic chest pain = higher likelihood
+- **Exercise-induced angina**: Those who suffered were more at risk
+- **Multivariate insight**: Chest pain type + maximum heart rate jointly influence risk
+
+### Key Risk Factors Identified
+1. **Age** (older patients)
+2. **Chest pain type** (asymptomatic)
+3. **Exercise-induced angina**
+
+---
+
+## ⚙️ Feature Engineering
+
+### 1. Categorical Encoding
+Categorical features (sex, chest pain type, ST slope) transformed using **Label Encoding** for algorithm compatibility.
+
+### 2. Age Binning
+Ages grouped into categories for capturing non-linear relationships:
+- Young
+- Adult
+- Middle Age
+- Old
+
+### 3. Handling Class Imbalance
+**SMOTE (Synthetic Minority Over-sampling Technique)** used to oversample the minority class (patients with heart disease), enabling better identification of heart disease cases.
+
+### 4. Feature Scaling
+**StandardScaler** applied for normalization across all numerical features.
+
+---
+
+## 🤖 Model Building
+
+### Models Evaluated
+| Model | Description |
+|-------|-------------|
+| **Random Forest** | Ensemble of decision trees with bootstrapping |
+| **XGBoost** | Gradient boosting with regularization |
+| **LightGBM** | Gradient boosting optimized for efficiency and scalability |
+| **Stacking Ensemble** | Combined predictions of LightGBM + XGBoost |
+
+### Hyperparameter Tuning
+**RandomizedSearchCV** employed for efficient hyperparameter exploration:
+- Samples different combinations of values
+- Evaluates performance through cross-validation
+- Parameters tuned: n_estimators, max_depth, min_samples_split, min_samples_leaf
+
+### Model Comparison Results
+| Model | Accuracy | Notes |
+|-------|----------|-------|
+| Random Forest | ~80.9% | 10-fold CV |
+| XGBoost | ~80% | Gradient boosting |
+| LightGBM | **Highest** | Best computational efficiency |
+| Stacking | Competitive | Combined approach |
+
+### Best Model: LightGBM
+LightGBM was selected as the final model due to:
+- **Highest accuracy** on the dataset
+- **Computational efficiency** and scalability
+- **Effective handling** of large datasets
+
+---
+
+## 📈 Key Results
+
+| Metric | Value |
+|--------|-------|
+| **Best Model Accuracy** | ~80.9% |
+| **Cross-Validation** | 10-Fold |
+| **Records Analyzed** | 10,000 |
+| **Algorithms Compared** | 4 |
+| **Key Predictors** | Age, Chest Pain Type, Exercise Angina |
+
+---
+
+## 💡 Conclusions
+
+The analysis highlighted several key factors associated with heart disease risk:
+
+1. **Age, chest pain type, and exercise-induced angina** emerged as significant predictors
+2. **Older patients** and those experiencing **asymptomatic chest pain** or **angina during exercise** are more likely to have heart disease
+3. **Cholesterol levels** did not show a clear relationship with heart disease
+4. **Maximum heart rate** appeared to influence the condition when combined with chest pain type
+5. **Class imbalance** was successfully addressed using SMOTE technique
+
+---
+
+## 📋 Recommendations
+
+1. **Focus on Key Predictors**: Emphasizing age, chest pain type, and exercise-induced angina will result in more accurate and targeted interventions
+2. **Investigate Variable Interactions**: Further research into interactions between maximum heart rate and chest pain type could uncover additional insights
+3. **Clinical Application**: Model can assist in early screening and risk assessment
 
 ---
 
 ## 🛠️ Technical Stack
 
-```python
-# Core Libraries
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-# Machine Learning
-from sklearn.model_selection import train_test_split, cross_val_score, KFold
-from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, StackingClassifier
-from sklearn.metrics import accuracy_score, f1_score, confusion_matrix
-import xgboost as xgb
-import lightgbm as lgb
-```
+| Category | Tools |
+|----------|-------|
+| **Language** | Python |
+| **ML Libraries** | Scikit-learn, XGBoost, LightGBM |
+| **Data Processing** | Pandas, NumPy |
+| **Visualization** | Matplotlib, Seaborn |
+| **Resampling** | imbalanced-learn (SMOTE) |
+| **Validation** | K-Fold Cross-Validation |
 
 ---
 
-## 🔄 Methodology
-
-### 1. Data Preprocessing
-- Combined train/test datasets (7,303 + 2,697 records)
-- Handled missing values in target column
-- Exploratory data analysis with distribution plots
-
-### 2. Feature Engineering
-- Analyzed correlation matrices
-- Applied StandardScaler normalization
-- Univariate and bivariate analysis
-
-### 3. Model Development
-
-| Model | Accuracy | Notes |
-|-------|----------|-------|
-| **Random Forest** | **80.9%** | Best performer after tuning |
-| XGBoost | ~80% | Gradient boosting |
-| LightGBM | ~79% | Fast gradient boosting |
-| AdaBoost | ~78% | Adaptive boosting |
-
-### 4. Hyperparameter Tuning
-
-```python
-param_dist = {
-    'n_estimators': [100, 200, 300],
-    'max_depth': [None, 5, 10],
-    'min_samples_split': [2, 5, 10],
-    'min_samples_leaf': [1, 2, 4]
-}
-
-random_search = RandomizedSearchCV(
-    estimator=RandomForestClassifier(),
-    param_distributions=param_dist,
-    n_iter=10, cv=5, scoring='accuracy'
-)
-```
-
-### 5. Ensemble Stacking
-
-```python
-stacking_model = StackingClassifier(
-    estimators=[
-        ("rf", RandomForestClassifier(n_estimators=100)),
-        ("ada", AdaBoostClassifier()),
-        ("xgb", xgb.XGBClassifier(max_depth=4, n_estimators=100))
-    ],
-    final_estimator=RandomForestClassifier(random_state=42),
-    cv=5,
-    n_jobs=-1
-)
-```
-
----
-
-## 📈 Results
-
-- **Mean Accuracy**: 80.9% (10-fold CV)
-- **Best Fold**: 82.63%
-- **Cross-Validation**: Consistent performance across all folds
-
-### Fold-by-Fold Results
-```
-Fold 1: 80.57%    Fold 6: 80.41%
-Fold 2: 82.63%    Fold 7: 81.92%
-Fold 3: 79.89%    Fold 8: 78.77%
-Fold 4: 80.82%    Fold 9: 81.51%
-Fold 5: 81.23%    Fold 10: 81.23%
-```
-
----
-
-## 📁 Project Structure
+## 📁 Project Files
 
 ```
 ├── DSN heart_Disease Prediction Bootcamp 2024.ipynb  # Main notebook
 ├── Heart Disease Prediction.pdf                       # Full report
-└── README.md                                          # This file
+└── README.md                                          # This documentation
 ```
-
----
-
-## 🎓 Key Learnings
-
-1. **Random Forest** outperformed other algorithms after hyperparameter tuning
-2. **Ensemble methods** (stacking) can combine strengths of multiple models
-3. **Cross-validation** is essential for reliable performance estimation
-4. **Feature analysis** reveals clinical indicators most predictive of heart disease
-
----
-
-## 🏆 Competition Context
-
-This project was developed as part of the **Data Science Nigeria (DSN) Bootcamp 2024** classification challenge, demonstrating practical application of machine learning to healthcare analytics.
 
 ---
 
@@ -176,4 +199,4 @@ Data Scientist | Machine Learning Engineer
 
 ---
 
-*Built with Python, Scikit-learn, XGBoost, and ❤️*
+*DSN X Microsoft 2024 AI Bootcamp Qualification Hackathon* 🏆
