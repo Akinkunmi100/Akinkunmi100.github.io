@@ -170,13 +170,14 @@ DBNAME <- 'your_database'
 
 ---
 
-## 📊 Power BI Dashboard
+## 📊 Power BI Dashboard (Deployed)
 
-An interactive Power BI dashboard (`Marketing campaign viz.pbix`) provides:
-- Campaign response overview
-- Customer segment analysis
-- Demographic breakdowns
-- Key performance indicators
+The project includes a **deployed Power BI dashboard** (`Marketing campaign viz.pbix`) that provides:
+- **Campaign Response Overview** — Real-time response rate tracking
+- **Customer Segment Analysis** — Visual breakdown of the 3 identified clusters
+- **Demographic Breakdowns** — Income, education, and marital status distributions
+- **Key Performance Indicators** — Model accuracy, ROC-AUC, and targeting efficiency metrics
+- **Interactive Filters** — Drill-down by segment, demographics, and response status
 
 ---
 
