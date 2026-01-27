@@ -4,9 +4,28 @@
 
 ---
 
-## 🎯 Business Problem
+## 🎯 The Challenge
 
-Predict the presence of heart disease in patients using clinical features. This binary classification task aims to support early detection and intervention for cardiovascular health.
+The challenge revolves around creating a sophisticated predictive model to determine the likelihood of an individual having heart disease. As one of the leading causes of global mortality, **detecting heart disease in its early stages is pivotal** for enhancing patient outcomes and halting its progression.
+
+> Conventional diagnostic methods often come with substantial costs and time requirements. Thus, there exists a pressing need for a cutting-edge predictive model that can evaluate the risk of heart disease utilizing easily accessible patient information.
+
+### Objective
+
+Design and build a predictive model capable of accurately determining the probability of an individual having heart disease, focusing on:
+- Leveraging machine learning techniques for reliable predictions
+- Analyzing relevant clinical features
+- Ensuring high accuracy and generalizability on unseen data
+
+### Why It Matters
+
+| Impact Area | Benefit |
+|-------------|---------|
+| **Early Intervention** | Timely prediction aids in prevention |
+| **Cost Reduction** | Reduces unnecessary diagnostic procedures |
+| **Resource Optimization** | Targets healthcare resources effectively |
+| **Public Health** | Aggregated insights drive targeted health efforts |
+| **Research Advancement** | Model insights push medical research forward |
 
 **Dataset**: 10,000 patient records with 14 clinical features  
 **Target**: Binary classification (1 = Heart Disease, 0 = No Heart Disease)
