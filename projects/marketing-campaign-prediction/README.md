@@ -1,203 +1,227 @@
-# Marketing Campaign Response Prediction
+# 📊 Marketing Campaign Prediction
 
-## 📌 Project Overview
-
-This project develops a predictive analytics system to identify customers most likely to respond positively to marketing campaigns. By leveraging multiple machine learning techniques, we enable data-driven targeting strategies that optimize marketing ROI and reduce wasted spend on unresponsive customers.
+**Customer Response Prediction using Machine Learning in R**
 
 ---
 
-## 🎯 Business Problem
+## 🎯 Project Overview
 
-As a data scientist at **BangorTelco**, I was tasked with answering: *"Is there a way to determine in advance which customers are likely to accept the offer in the marketing campaign?"*
+### Introduction
+In order to maintain a competitive edge and sustain their progress, many companies employ marketing campaigns as a strategy to engage with their customers, thereby enhancing their sales landscape and customer retention.
 
-Key challenges included:
+> **Key Insight**: Customer acquisition costs are approximately **5-6 times higher** than retaining existing customers (Colgate & Danaher, 2000). This makes predicting customer response to campaigns critically important.
 
-- **High marketing costs** with low return on investment
-- **No systematic way** to identify responsive customers
-- **Limited understanding** of customer segments and behaviors
-- **Inability to prioritize** marketing efforts effectively
+This project exemplifies the profound impact of machine learning, offering a comprehensive perspective on accurately predicting customer responses to promotional offers based on individual customer traits.
 
-**Goal:** Build a predictive model using 20,000+ customer records from the company database that the sales team can use to target customers likely to accept offers, reducing marketing costs significantly.
+### Objectives
+- Extract customer data from MySQL database
+- Perform data preprocessing and cleaning
+- Conduct exploratory data analysis (EDA)
+- Engineer relevant features
+- Build and compare multiple classification models
+- Perform cluster analysis for customer segmentation
+- Provide actionable recommendations
 
 ---
 
-## 📊 Dataset
+## 📊 Data Collection and Understanding
 
-The dataset was extracted from a MySQL database and contains customer demographic, behavioral, and transactional information:
+### Data Source
+Dataset was retrieved from a **MySQL database** and underwent various stages of processing including:
+- Preprocessing and cleansing
+- Exploratory data analysis
+- Feature manipulation
+- Model development for predictive analytics
 
+### Dataset Overview
+| Metric | Value |
+|--------|-------|
+| **Total Records** | 22,141 |
+| **Features** | 10 |
+| **Missing Values** | 0 (Clean dataset) |
+| **Target Variable** | Response (0/1) |
+
+### Key Statistics
+| Feature | Mean | Min | Max |
+|---------|------|-----|-----|
+| Birth Year | 1969 | 1893 | 1996 |
+| Annual Income | $52,514 | $1,730 | $666,666 |
+| Recency (days) | 49 | 0 | 99 |
+| Web Purchases | 4.1 | 0 | 27 |
+| Store Purchases | 5.8 | 0 | 13 |
+| Web Visits/Month | 5.3 | 0 | 20 |
+| Response Rate | 15.32% | — | — |
+
+### Feature Descriptions
 | Feature | Description |
 |---------|-------------|
-| `Year_Birth` | Customer's year of birth |
-| `Education` | Education level (Basic, Graduation, Master, PhD, 2n Cycle) |
-| `MaritalStatus` | Marital status (Single, Married, Divorced, etc.) |
-| `Income` | Annual household income |
-| `NumWebVisitsMonth` | Number of website visits per month |
-| `NumWebPurchases` | Number of purchases made through website |
-| `NumStorePurchases` | Number of purchases made in-store |
-| `Response` | Target variable (1 = Responded, 0 = Did not respond) |
+| **ID** | Unique customer identifier |
+| **Year_Birth** | Customer's birth year |
+| **Education** | Education level (Graduation, PhD, Master, etc.) |
+| **MaritalStatus** | Marital status (Single, Married, Together, etc.) |
+| **Income** | Annual household income |
+| **Recency** | Days since last purchase |
+| **NumWebPurchases** | Number of purchases made online |
+| **NumStorePurchases** | Number of purchases made in-store |
+| **NumWebVisitsMonth** | Number of website visits last month |
+| **Response** | Target: Accepted campaign offer (1) or not (0) |
 
 ---
 
-## 🔧 Methodology
+## 🔍 Exploratory Data Analysis
 
-### 1. Data Preprocessing
-- Extracted data from MySQL using `RMySQL`
-- Handled outliers using IQR method (replaced with median)
-- Removed unrealistic birth years (< 1900)
-- Encoded categorical variables (Education, Marital Status)
-- Removed irrelevant columns (ID)
+### Customer Demographics
+- **Majority of participants** are individuals of older age (average birth year: 1969)
+- **Income distribution**: Wide range from $1,730 to $666,666
+- Mean duration since last purchase: ~49 days
+- Average of 5 web visits recorded per month
+- Average 4 online purchases vs 6 in-store purchases
 
-### 2. Exploratory Data Analysis
-- Visualized response distribution across demographics
-- Created correlation matrix for numerical features
-- Analyzed income distribution and outliers
-- Cross-tabulated education and marital status with response
+### Education Level Analysis
+| Education | Declined | Accepted |
+|-----------|----------|----------|
+| Graduation | 9,558 | 1,592 |
+| PhD | 3,751 | — |
+| Master | 3,145 | — |
 
-### 3. Feature Engineering
-- Label encoding for Education (1-5 scale)
-- Label encoding for Marital Status (1-8 scale)
-- Binary response conversion (Yes/No)
+**Key Finding**: Higher rate of campaign offer decline was observed among graduate customers compared to those at other educational levels.
 
-### 4. Model Building
-
-#### Decision Tree (rpart)
-```r
-class_mod1 = rpart(Response ~ ., data = train_data)
-```
-- Provides interpretable business rules
-- Easy to explain to stakeholders
-
-#### Logistic Regression
-```r
-log_model <- glm(Response ~ ., data = train_data, family = binomial)
-```
-- Statistical significance of predictors
-- Odds ratio interpretation
-
-#### K-Nearest Neighbors
-```r
-knn_model <- train(Response ~ ., data = train_data, method = 'knn')
-```
-- Non-parametric approach
-- Captures complex patterns
-
-### 5. Customer Segmentation
-
-Applied clustering to identify distinct customer groups:
-
-#### K-Means Clustering
-```r
-Kmeandata <- kmeans(x = scaled_features, center = 3, nstart = 5)
-```
-
-#### Hierarchical Clustering
-- Created dendrograms for visual cluster analysis
-- Used complete linkage method
+### Response Rate
+- **15.32%** of customers accepted the campaign offer
+- **84.68%** declined
+- Indicates **class imbalance** in target variable
 
 ---
 
-## 📈 Results
+## ⚙️ Data Preprocessing
 
-### Classification Performance
+### MySQL Database Connection
+```r
+database_con <- dbConnect(MySQL(), 
+    user = DBUser, 
+    password = UserPassword,
+    host = HostName, 
+    dbname = DatabaseName, 
+    port = 3306)
 
-| Model | Accuracy | ROC-AUC |
-|-------|----------|---------|
-| Decision Tree | ~85% | 0.72 |
-| Logistic Regression | ~87% | 0.76 |
-| K-Nearest Neighbors | ~86% | 0.74 |
+data <- dbGetQuery(database_con, 
+    statement = "SELECT * FROM world.marketingcampaign")
+```
 
-### Customer Segments
+### Data Quality
+- ✅ No missing observations
+- ✅ Clean dataset ready for analysis
+- ✅ All 22,141 records complete
 
-Three distinct customer segments were identified based on:
+---
+
+## 🤖 Model Building
+
+### Models Evaluated
+
+#### 1. Decision Tree
+- Built using `rpart` package
+- Visualized with `rpart.plot`
+- Confusion matrix evaluation
+- ROC and AUC analysis
+
+#### 2. Logistic Regression
+- Binary classification model
+- Probability-based predictions
+- ROC and AUC curves generated
+
+#### 3. K-Nearest Neighbor (KNN)
+- Instance-based learning
+- Model preparation and fitting
+- Distance-based classification
+- Performance evaluation with confusion matrix
+
+#### 4. Cluster Analysis
+- Customer segmentation using `cluster` package
+- Pattern discovery in customer behavior
+- Visualization with `factoextra`
+
+### Model Comparison
+All models were evaluated using:
+- Confusion Matrix
+- ROC (Receiver Operating Characteristic) Curve
+- AUC (Area Under Curve) Score
+
+---
+
+## 🛠️ Technical Stack
+
+### R Libraries Used
+| Category | Libraries |
+|----------|-----------|
+| **Decision Tree** | rpart, rpart.plot |
+| **Database** | DBI, RMySQL |
+| **Machine Learning** | caret, class |
+| **Evaluation** | pROC |
+| **Visualization** | ggplot2, gridExtra |
+| **Data Manipulation** | dplyr, readr |
+| **Clustering** | cluster, factoextra |
+| **Correlation** | corrplot |
+
+### Database
+- **MySQL** database for data storage
+- SQL queries for data extraction
+- Secure connection handling
+
+---
+
+## 📈 Key Findings from Cluster Analysis
+
+Customer segmentation revealed distinct groups based on:
+- Purchasing behavior (web vs store)
 - Income levels
-- Web engagement (visits per month)
-- Purchase behavior (online vs. in-store)
+- Engagement patterns (recency, web visits)
+- Response likelihood
 
 ---
 
-## 🛠️ Tech Stack
+## 💡 Conclusions
 
-| Category | Technologies |
-|----------|-------------|
-| **Language** | R |
-| **Data Wrangling** | dplyr, tidyverse |
-| **Visualization** | ggplot2, corrplot |
-| **Machine Learning** | caret, rpart, class |
-| **Evaluation** | pROC (ROC-AUC) |
-| **Clustering** | cluster, factoextra, dendextend |
-| **Database** | MySQL (RMySQL, DBI) |
-| **Reporting** | R Markdown, Power BI |
+1. **Customer Retention Focus**: Acquiring new customers costs 5-6x more than retention
+2. **Education Impact**: Graduate customers showed higher campaign decline rates
+3. **Multi-Channel Behavior**: Customers show different patterns for online vs in-store purchases
+4. **Predictive Power**: Machine learning models can effectively predict campaign response
+5. **Segmentation Value**: Cluster analysis reveals actionable customer segments
 
 ---
 
-## 📁 Project Structure
+## 📋 Recommendations
+
+1. **Targeted Campaigns**: Focus on customer segments with higher response likelihood
+2. **Retention Strategy**: Invest in retaining existing customers over acquisition
+3. **Channel Optimization**: Tailor campaigns based on customer purchase channel preferences
+4. **Education-Based Targeting**: Develop specific strategies for different education levels
+5. **Recency Consideration**: Target customers based on time since last purchase
+
+---
+
+## 📚 References
+
+- Ascarza et al. (2018) — Customer retention and firm interactions
+- Colgate & Danaher (2000) — Customer acquisition vs retention costs
+
+---
+
+## 📁 Project Files
 
 ```
-├── Marketing Campaign Prediction.Rmd    # Main R Markdown analysis
-├── Marketing Campaigne Pred Report.pdf  # Full report
-├── Marketing campaign viz.pbix          # Power BI dashboard
-├── Data Science Projct - Assignment Brief .pdf  # Problem statement
-└── README.md                             # This file
+├── Marketing Campaign Prediction.Rmd   # Main R Markdown notebook
+├── Marketing campaign viz.pbix         # Power BI visualization
+└── README.md                           # This documentation
 ```
-
----
-
-## 🚀 How to Run
-
-### Prerequisites
-- R (>= 4.0)
-- RStudio (recommended)
-- MySQL database with the marketing campaign data
-
-### Installation
-
-1. Install required R packages:
-```r
-install.packages(c("ggplot2", "dplyr", "tidyverse", "tree", "rpart", 
-                   "caret", "class", "dendextend", "corrplot", "pROC", 
-                   "cluster", "factoextra", "DBI", "RMySQL"))
-```
-
-2. Configure database connection in the script:
-```r
-USER <- 'your_username'
-PASSWORD <- 'your_password'
-HOST <- 'localhost'
-DBNAME <- 'your_database'
-```
-
-3. Open `Marketing Campaign Prediction.Rmd` in RStudio and click **Knit**
-
----
-
-## 📊 Power BI Dashboard (Deployed)
-
-The project includes a **deployed Power BI dashboard** (`Marketing campaign viz.pbix`) that provides:
-- **Campaign Response Overview** — Real-time response rate tracking
-- **Customer Segment Analysis** — Visual breakdown of the 3 identified clusters
-- **Demographic Breakdowns** — Income, education, and marital status distributions
-- **Key Performance Indicators** — Model accuracy, ROC-AUC, and targeting efficiency metrics
-- **Interactive Filters** — Drill-down by segment, demographics, and response status
-
----
-
-## 🎓 Key Learnings
-
-1. **Logistic Regression** provided the best balance of accuracy and interpretability
-2. **Customer segmentation** revealed actionable insights for targeted marketing
-3. **Feature engineering** (especially income outlier handling) significantly improved model performance
-4. **Cross-validation** ensured robust model evaluation
 
 ---
 
 ## 👤 Author
 
 **Akinkunmi Akinlabi**  
-Data Analyst & AI Engineer  
-[Portfolio](https://akinkunmi100.github.io) | [LinkedIn](https://linkedin.com/in/akinkunmi-akinlabi)
+Data Scientist | R Developer
 
 ---
 
-## 📄 License
-
-This project is for educational and portfolio demonstration purposes.
+*Built with R, MySQL, and ❤️*
