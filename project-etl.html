@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>High-Throughput ETL Data Pipeline | Akinkunmi Akinlabi</title>
-    <meta name="description" content="Architected a fault-tolerant Python/SQL ETL data pipeline processing 10M+ daily records.">
+    <title>Survey Research Data Warehouse & ETL Platform | Akinkunmi Akinlabi</title>
+    <meta name="description" content="A production-grade, single-machine data warehouse and ETL platform for survey research operations. Built with PostgreSQL 16, MinIO, Prefect 3, and FastAPI.">
     <link rel="canonical" href="https://akinkunmi100.github.io/project-etl.html">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="High-Throughput ETL Data Pipeline | Akinkunmi Akinlabi">
-    <meta property="og:description" content="Architected a fault-tolerant Python/SQL ETL data pipeline processing 10M+ daily records.">
+    <meta property="og:title" content="Survey Research Data Warehouse & ETL Platform | Akinkunmi Akinlabi">
+    <meta property="og:description" content="A production-grade, single-machine data warehouse and ETL platform for survey research operations. Built with PostgreSQL 16, MinIO, Prefect 3, and FastAPI.">
     <meta property="og:image" content="https://akinkunmi100.github.io/assets/images/projects/etl-pipeline.png">
     <meta property="og:url" content="https://akinkunmi100.github.io/project-etl.html">
     <meta name="twitter:card" content="summary_large_image">
@@ -51,53 +51,133 @@
     <main id="main-content">
 
     <header class="py-20 px-6 max-w-4xl mx-auto text-center" data-aos="fade-up">
-        <span class="text-primary tracking-widest uppercase text-sm font-bold">Data Engineering</span>
-        <h1 class="text-5xl md:text-6xl font-heading text-white font-bold mt-4 mb-8">High-Throughput ETL Pipeline</h1>
-        <p class="text-xl text-gray-400 leading-relaxed">Architected a fault-tolerant Python/SQL pipeline processing 10M+ daily records, reducing data availability latency from 24 hours to 15 minutes.</p>
+        <span class="text-primary tracking-widest uppercase text-sm font-bold">Data Engineering / ETL</span>
+        <h1 class="text-5xl md:text-6xl font-heading text-white font-bold mt-4 mb-8">Survey Research Data Warehouse & ETL</h1>
+        <p class="text-xl text-gray-400 leading-relaxed">A production-grade, single-machine data warehouse and ETL platform for high-integrity survey research operations, running inside WSL2 (Ubuntu 24.04) and Docker.</p>
     </header>
 
     <div class="max-w-6xl mx-auto px-6 mb-20" data-aos="zoom-in">
         <div class="bg-dark-card rounded-2xl border border-white/10 overflow-hidden p-4">
-            <img src="assets/images/projects/etl-pipeline.png" class="w-full rounded-xl shadow-2xl" alt="High-throughput ETL Data Pipeline Architecture Diagram">
+            <img src="assets/images/projects/etl-pipeline.png" class="w-full rounded-xl shadow-2xl" alt="Survey Research Data Warehouse and ETL Architecture Diagram">
         </div>
     </div>
 
     <div class="max-w-4xl mx-auto px-6 grid md:grid-cols-3 gap-12 mb-20">
         <div class="md:col-span-2 space-y-12">
-            <section>
-                <h2 class="text-2xl text-white font-bold mb-4 font-heading">The Challenge</h2>
-                <p>The company's data warehouse was updated via a fragile, nightly batch script. When it failed, the business team lost a whole day of insights. As data volume grew to 10M rows/day, the nightly window was no longer sufficient.</p>
+            <section data-aos="fade-up">
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Background & Challenges</h2>
+                <p>Large-scale field research operations require fast, reliable, and secure ingestion of data from remote field agents. Relying on manual downloads or slow overnight updates creates massive lags in detecting data entry mistakes, fabrications, or equipment issues.</p>
+                <p class="mt-4">This platform delivers a production-grade data engineering infrastructure to handle survey data streams, validate submissions in real-time, detect schema drift, and route clean data to dedicated client database schemas for instant analysis.</p>
             </section>
-            <section>
-                <h2 class="text-2xl text-white font-bold mb-4 font-heading">The Solution</h2>
-                <p>I re-architected the ingestion layer to move from Batch to Near-Real-Time processing.</p>
-                <ul class="list-disc pl-5 mt-4 space-y-2">
-                    <li>Built modular extraction scripts using Python and Pandas.</li>
-                    <li>Orchestrated workflows using Apache Airflow to handle dependencies and retries.</li>
-                    <li>Optimized SQL transformations using window functions and proper indexing.</li>
+
+            <section data-aos="fade-up">
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Key Objectives</h2>
+                <ul class="list-disc pl-5 space-y-2 text-gray-400">
+                    <li><strong class="text-white">Real-Time Ingestion:</strong> Capture incoming webhook form submissions instantly and back up raw payloads.</li>
+                    <li><strong class="text-white">Orchestrated Ingests:</strong> Run scheduled incremental imports from SurveyCTO APIs with automatic retry rules.</li>
+                    <li><strong class="text-white">Automated QC:</strong> Verify submissions using 5 distinct visual, temporal, and numeric checks.</li>
+                    <li><strong class="text-white">Multi-Client Segregation:</strong> Store data securely inside dedicated Postgres schemas for each client.</li>
+                    <li><strong class="text-white">Tiered Cloud Backups:</strong> Package compressed DB logs and S3 buckets daily to Cloudflare R2 / Backblaze B2.</li>
                 </ul>
             </section>
-            <section>
-                <h2 class="text-2xl text-white font-bold mb-4 font-heading">The Results</h2>
-                <div class="grid grid-cols-3 gap-4 border-t border-white/10 pt-6">
-                    <div><span class="block text-3xl font-bold text-primary">15min</span><span class="text-sm">Latency</span></div>
-                    <div><span class="block text-3xl font-bold text-primary">10M+</span><span class="text-sm">Rows/Day</span></div>
-                    <div><span class="block text-3xl font-bold text-primary">99.9%</span><span class="text-sm">Uptime</span></div>
+
+            <section data-aos="fade-up">
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Architecture & Pipeline Flow</h2>
+                <p>The platform splits data ingestion into two distinct paths (Real-time Webhook and Orchestrated Nightly ETL) to guarantee high availability and prevent data loss:</p>
+                
+                <div class="space-y-6 mt-6">
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">1. FastAPI Webhook Receiver</h3>
+                        <p class="text-sm text-gray-400 mt-1">Field apps transmit submissions to a FastAPI endpoint authenticated via HMAC-SHA256 signatures. The incoming JSON payload is archived immediately into a MinIO object storage bucket (<code class="text-primary">raw-bronze</code>) for durability before processing.</p>
+                    </div>
+
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">2. Prefect Incremental Sync</h3>
+                        <p class="text-sm text-gray-400 mt-1">Prefect 3 handles nightly incremental synchronization from the SurveyCTO V2 API. The workflow handles schema drift gracefully, flattening nested survey payloads and upserting them into database schema profiles.</p>
+                    </div>
+
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">3. Multi-Tenant Postgres Schemas</h3>
+                        <p class="text-sm text-gray-400 mt-1">Ingested datasets are distributed across dedicated, permission-locked database schemas: <code class="text-primary">client_mtn</code>, <code class="text-primary">client_unilever</code>, and <code class="text-primary">internal</code>. Readers can only access authorized views, maintaining absolute data privacy.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section data-aos="fade-up">
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Automated Quality Control (QC) Engine</h2>
+                <p>To eliminate data fabrication and entry errors, the Prefect-driven QC engine runs five complex checks against every single submitted form, flagging anomalies in <code class="text-primary">qc_system.qc_flags</code> with detailed JSONB payloads:</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                    <div class="bg-dark-card p-5 rounded-xl border border-white/10">
+                        <span class="text-primary font-bold text-sm uppercase">1. Duration Violations</span>
+                        <p class="text-xs text-gray-400 mt-2">Checks if surveyors filled out the forms faster than physical speeds allow, flagging possible superficial inputs.</p>
+                    </div>
+                    <div class="bg-dark-card p-5 rounded-xl border border-white/10">
+                        <span class="text-primary font-bold text-sm uppercase">2. Duplicate Contacts</span>
+                        <p class="text-xs text-gray-400 mt-2">Scans datasets for matching phone numbers or respondent identification metrics, preventing duplicate rewards.</p>
+                    </div>
+                    <div class="bg-dark-card p-5 rounded-xl border border-white/10">
+                        <span class="text-primary font-bold text-sm uppercase">3. GPS Boundary Errors</span>
+                        <p class="text-xs text-gray-400 mt-2">Validates if the submission coordinates map strictly inside predefined geo-spatial research zones.</p>
+                    </div>
+                    <div class="bg-dark-card p-5 rounded-xl border border-white/10">
+                        <span class="text-primary font-bold text-sm uppercase">4. Statistical Outliers</span>
+                        <p class="text-xs text-gray-400 mt-2">Identifies numerical anomalies in survey responses that lie outside normal statistical distributions.</p>
+                    </div>
                 </div>
             </section>
         </div>
-        
+
         <div class="space-y-8">
-            <div class="bg-dark-card p-6 rounded-xl border border-white/10">
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10" data-aos="fade-left" data-aos-delay="100">
                 <h3 class="text-white font-bold mb-4">Tech Stack</h3>
                 <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Python</span>
-                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">SQL</span>
-                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Apache Airflow</span>
-                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">PostgreSQL</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Prefect 3</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">PostgreSQL 16</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">FastAPI</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">MinIO (S3)</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Docker</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Metabase / Superset</span>
                 </div>
             </div>
-            <div class="bg-dark-card p-6 rounded-xl border border-white/10">
+
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10" data-aos="fade-left" data-aos-delay="200">
+                <h3 class="text-white font-bold mb-4">System Ports & Services</h3>
+                <ul class="text-sm text-gray-400 space-y-2">
+                    <li class="flex justify-between"><span>FastAPI Gateway</span><span class="text-white font-mono">Port 8001</span></li>
+                    <li class="flex justify-between"><span>PostgreSQL DB</span><span class="text-white font-mono">Port 5435</span></li>
+                    <li class="flex justify-between"><span>MinIO Console</span><span class="text-white font-mono">Port 9001</span></li>
+                    <li class="flex justify-between"><span>Prefect Server</span><span class="text-white font-mono">Port 4200</span></li>
+                    <li class="flex justify-between"><span>Metabase App</span><span class="text-white font-mono">Port 3030</span></li>
+                </ul>
+            </div>
+
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10" data-aos="fade-left" data-aos-delay="300">
+                <h3 class="text-white font-bold mb-4">Key Metrics</h3>
+                <ul class="text-sm text-gray-400 space-y-3">
+                    <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                        <span>Database Engines</span>
+                        <span class="text-primary font-bold">Postgres 16</span>
+                    </li>
+                    <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                        <span>Ingest Options</span>
+                        <span class="text-primary font-bold">FastAPI & API Sync</span>
+                    </li>
+                    <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                        <span>QC Audit Rules</span>
+                        <span class="text-primary font-bold">5 Automated Checks</span>
+                    </li>
+                    <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                        <span>Security Protocols</span>
+                        <span class="text-primary font-bold">HMAC Signature</span>
+                    </li>
+                    <li class="flex items-center justify-between">
+                        <span>Backup Storage</span>
+                        <span class="text-primary font-bold">R2 / B2 Cloud</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10" data-aos="fade-left" data-aos-delay="400">
                 <h3 class="text-white font-bold mb-4">Links</h3>
                 <a href="https://github.com/Akinkunmi100/Data-Warehouse-Project" target="_blank" rel="noopener noreferrer" class="block w-full text-center py-3 bg-white text-black font-bold rounded hover:bg-gray-200 transition">View Code on GitHub</a>
             </div>
