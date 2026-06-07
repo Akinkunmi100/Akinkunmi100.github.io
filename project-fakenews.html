@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Classifier — LSTM Deep Learning | Akinkunmi Akinlabi</title>
+    <meta name="description" content="A deep learning LSTM model trained on real and fake Pakistani news articles achieving 97.5% accuracy. Built with TensorFlow, Keras, and word cloud visualisation.">
+    <link rel="canonical" href="https://akinkunmi100.github.io/project-fakenews.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Fake News Classifier — LSTM Deep Learning | Akinkunmi Akinlabi">
+    <meta property="og:description" content="A deep learning LSTM model trained on real and fake Pakistani news articles achieving 97.5% accuracy.">
+    <meta property="og:image" content="https://akinkunmi100.github.io/assets/images/projects/fake-news-classifier.png">
+    <meta property="og:url" content="https://akinkunmi100.github.io/project-fakenews.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/favicon-180.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { primary: '#00e1ff', dark: '#050505', 'dark-card': '#121212' },
+                    fontFamily: { sans: ['Space Grotesk', 'sans-serif'], heading: ['Outfit', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&family=Space+Grotesk:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        #preloader { position: fixed; inset: 0; background: #050505; z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s ease-out; }
+        .loader-ring { width: 60px; height: 60px; border: 4px solid rgba(255,255,255,0.1); border-top: 4px solid #00e1ff; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        #scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: #00e1ff; z-index: 100; width: 0%; box-shadow: 0 0 10px #00e1ff; transition: width 0.1s; }
+    </style>
+</head>
+<body class="bg-dark text-gray-300 font-sans">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-black focus:font-bold focus:rounded-md">Skip to Content</a>
+
+    <div id="preloader"><div class="loader-ring"></div></div>
+    <div id="scroll-progress"></div>
+
+    <nav class="py-6 px-8 border-b border-white/10 flex justify-between items-center">
+        <a href="index.html" class="text-white font-bold text-xl hover:text-primary transition">← Back to Portfolio</a>
+    </nav>
+
+    <main id="main-content">
+
+    <header class="py-20 px-6 max-w-4xl mx-auto text-center" data-aos="fade-up">
+        <span class="text-primary tracking-widest uppercase text-sm font-bold">NLP / Deep Learning / TensorFlow</span>
+        <h1 class="text-5xl md:text-6xl font-heading text-white font-bold mt-4 mb-8">Fake News Classifier</h1>
+        <p class="text-xl text-gray-400 leading-relaxed">Designed and trained a bidirectional LSTM neural network on a labelled Pakistani news dataset achieving 97.5% classification accuracy — distinguishing real journalism from fabricated misinformation.</p>
+    </header>
+
+    <div class="max-w-6xl mx-auto px-6 mb-20" data-aos="zoom-in">
+        <div class="bg-dark-card rounded-2xl border border-white/10 overflow-hidden p-4">
+            <img src="assets/images/projects/fake-news-classifier.png" class="w-full rounded-xl shadow-2xl" alt="LSTM fake news classifier neural network architecture and confusion matrix visualisation">
+        </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-6 grid md:grid-cols-3 gap-12 mb-20">
+        <div class="md:col-span-2 space-y-12">
+
+            <section data-aos="fade-up">
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Background &amp; Objective</h2>
+                <p>The rapid proliferation of fake news represents one of the defining information challenges of the digital era. Fabricated articles — particularly in politically sensitive contexts — can manipulate public opinion, undermine democratic processes, and incite real-world harm. Automated detection methods are therefore of enormous practical and societal importance.</p>
+                <p class="mt-4">This project builds a full end-to-end deep learning pipeline to classify news articles as <em>real</em> or <em>fake</em>. The training corpus is drawn from Pakistani political journalism (650 verified real articles + 286 labelled fake articles), making the problem both linguistically specific and topically rich. The final LSTM model achieves <strong>97.5% test accuracy</strong>.</p>
+            </section>
+
+            <section data-aos="fade-up">
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Dataset &amp; Exploratory Analysis</h2>
+
+                <div class="space-y-6">
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">Data Sources</h3>
+                        <p class="text-sm text-gray-400 mt-1">Two CSV datasets were ingested: <code class="text-primary">650 real news dataset.csv</code> (653 verified real news rows, 18 features) and <code class="text-primary">286 fake news dataset.csv</code> (285 fake news rows, 18 features). Features include headline, body text, author, publication date, source URL, party affiliation, subject, and regional metadata.</p>
+                    </div>
+
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">Label Engineering</h3>
+                        <p class="text-sm text-gray-400 mt-1">Binary labels were assigned: <code class="text-primary">Label = 1</code> for real news and <code class="text-primary">Label = 0</code> for fake news. The datasets were then vertically concatenated into a unified 938-row corpus and shuffled to prevent order bias.</p>
+                    </div>
+
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">Word Cloud Visualisation</h3>
+                        <p class="text-sm text-gray-400 mt-1">Word clouds were generated separately for fake and real news bodies using <code class="text-primary">WordCloud</code> with custom stopwords. Dominant terms in fake news skewed toward sensational political actors (e.g., "PTI", "PMLN"), whereas real news showed richer journalistic vocabulary — confirming that language patterns alone encode label information.</p>
+                    </div>
+
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">Author &amp; Source Distribution</h3>
+                        <p class="text-sm text-gray-400 mt-1">Value-count analysis on the <em>Author</em> field revealed heavy concentration — <em>Soch Fact Check</em> (78 articles) and <em>AFP</em> (68) dominate the fake news corpus. <code class="text-primary">CountVectorizer</code> was used for bigram frequency analysis to expose phrasing patterns specific to each class.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section data-aos="fade-up">
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Model Architecture &amp; Training Pipeline</h2>
+
+                <div class="space-y-6">
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">1. Text Preprocessing &amp; Tokenisation</h3>
+                        <p class="text-sm text-gray-400 mt-1">Raw text was cleaned by stripping punctuation and lowercasing. Keras <code class="text-primary">Tokenizer</code> fitted on the training set with a vocabulary ceiling of the top-N tokens. Sequences were zero-padded to a uniform length using <code class="text-primary">pad_sequences</code> to form the input tensor.</p>
+                    </div>
+
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">2. Train / Test Split</h3>
+                        <p class="text-sm text-gray-400 mt-1">Scikit-learn's <code class="text-primary">train_test_split</code> partitioned the corpus into 80% training (758 rows) and 20% test (80 rows). Stratification preserved the class ratio across splits, ensuring unbiased evaluation.</p>
+                    </div>
+
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">3. LSTM Neural Network</h3>
+                        <p class="text-sm text-gray-400 mt-1">A <code class="text-primary">Sequential</code> Keras model was constructed with: (i) an <em>Embedding</em> layer mapping token indices to dense 128-dimensional vectors; (ii) a <em>SpatialDropout1D</em> regularisation layer; (iii) an <em>LSTM</em> layer capturing long-range sequential dependencies in the text; and (iv) a final <em>Dense(2, softmax)</em> classification head. The model was compiled with <code class="text-primary">categorical_crossentropy</code> loss and trained for 10 epochs with batch size 128.</p>
+                    </div>
+
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">4. Training Dynamics</h3>
+                        <p class="text-sm text-gray-400 mt-1">Training accuracy reached <strong>100%</strong> by epoch 6, with validation accuracy stabilising at <strong>97.5–98.75%</strong>. The training loss curve showed rapid convergence; validation loss exhibited minor overfitting after epoch 2, consistent with the small dataset size. Loss and accuracy curves were plotted with <code class="text-primary">matplotlib</code> to verify stable learning.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section data-aos="fade-up">
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Evaluation &amp; Results</h2>
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="bg-dark-card p-4 rounded-xl border border-white/10 text-center">
+                        <span class="block text-2xl font-bold text-primary">97.5%</span>
+                        <span class="text-xs text-gray-500">Test Set Accuracy</span>
+                    </div>
+                    <div class="bg-dark-card p-4 rounded-xl border border-white/10 text-center">
+                        <span class="block text-2xl font-bold text-primary">938</span>
+                        <span class="text-xs text-gray-500">Total News Articles</span>
+                    </div>
+                    <div class="bg-dark-card p-4 rounded-xl border border-white/10 text-center">
+                        <span class="block text-2xl font-bold text-primary">0.98 F1</span>
+                        <span class="text-xs text-gray-500">Weighted F1-Score</span>
+                    </div>
+                    <div class="bg-dark-card p-4 rounded-xl border border-white/10 text-center">
+                        <span class="block text-2xl font-bold text-primary">1.00</span>
+                        <span class="text-xs text-gray-500">Fake News Precision</span>
+                    </div>
+                </div>
+
+                <p>The confusion matrix (seaborn heatmap) confirmed only 2 misclassifications out of 80 test samples — both false negatives (fake articles predicted as real). The classification report showed precision of <code class="text-primary">1.00</code> for the fake class (zero false positives) and recall of <code class="text-primary">0.88</code>, with weighted averages of <strong>precision 0.98, recall 0.97, F1 0.97</strong>. The high precision for fake news is particularly valuable in deployment scenarios where false alarms carry reputational cost.</p>
+            </section>
+
+        </div>
+
+        <div class="space-y-8">
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10" data-aos="fade-left" data-aos-delay="100">
+                <h3 class="text-white font-bold mb-4">Tech Stack</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Python</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">TensorFlow / Keras</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">LSTM</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Pandas</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Scikit-learn</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Matplotlib</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Seaborn</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">WordCloud</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Google Colab</span>
+                </div>
+            </div>
+
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10" data-aos="fade-left" data-aos-delay="200">
+                <h3 class="text-white font-bold mb-4">Model Stats</h3>
+                <ul class="text-sm text-gray-400 space-y-3">
+                    <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                        <span>Architecture</span>
+                        <span class="text-primary font-bold">LSTM</span>
+                    </li>
+                    <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                        <span>Training Epochs</span>
+                        <span class="text-primary font-bold">10</span>
+                    </li>
+                    <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                        <span>Batch Size</span>
+                        <span class="text-primary font-bold">128</span>
+                    </li>
+                    <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                        <span>Classes</span>
+                        <span class="text-primary font-bold">Real / Fake</span>
+                    </li>
+                    <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                        <span>Test Samples</span>
+                        <span class="text-primary font-bold">80</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10" data-aos="fade-left" data-aos-delay="300">
+                <h3 class="text-white font-bold mb-4">Project Links</h3>
+                <a href="FakenewsClassifier_(1).ipynb" target="_blank" class="block w-full text-center py-3 bg-white text-black font-bold rounded hover:bg-gray-200 transition mb-3">Open Jupyter Notebook</a>
+                <a href="projects/fake-news-classifier/Fake News Classifier Documentation.docx" target="_blank" class="block w-full text-center py-3 border border-primary text-primary font-bold rounded hover:bg-primary hover:text-black transition">Download Documentation</a>
+            </div>
+        </div>
+    </div>
+
+    </main>
+
+    <footer class="py-10 border-t border-white/10 text-center">
+        <p class="text-white/30 text-xs">© <script>document.write(new Date().getFullYear())</script> Akinkunmi Akinlabi.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 50 });
+        window.addEventListener("load", () => { const p = document.getElementById("preloader"); p.style.opacity = "0"; setTimeout(() => p.style.display = "none", 500); });
+        window.onscroll = function () { let s = document.body.scrollTop || document.documentElement.scrollTop; let h = document.documentElement.scrollHeight - document.documentElement.clientHeight; document.getElementById("scroll-progress").style.width = (s / h) * 100 + "%"; };
+    </script>
+</body>
+</html>
