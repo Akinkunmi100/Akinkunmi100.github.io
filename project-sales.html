@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revenue Dashboard | Akinkunmi Akinlabi</title>
+    <title>Construction Project Analytics Dashboard | Akinkunmi Akinlabi</title>
+    <meta name="description" content="Interactive Power BI dashboard for construction project management — tracking 2M+ man-hours, 1.38M quantities across disciplines and segments with real-time KPI monitoring.">
+    <link rel="canonical" href="https://akinkunmi100.github.io/project-sales.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Construction Project Analytics Dashboard | Akinkunmi Akinlabi">
+    <meta property="og:description" content="Interactive Power BI dashboard for construction project management — tracking 2M+ man-hours, 1.38M quantities across disciplines and segments.">
+    <meta property="og:image" content="https://akinkunmi100.github.io/assets/images/projects/sales-dashboard.png">
+    <meta property="og:url" content="https://akinkunmi100.github.io/project-sales.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/favicon-180.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -15,70 +28,272 @@
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&family=Space+Grotesk:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&family=Space+Grotesk:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        #preloader { position: fixed; inset: 0; background: #050505; z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s ease-out; }
+        .loader-ring { width: 60px; height: 60px; border: 4px solid rgba(255,255,255,0.1); border-top: 4px solid #00e1ff; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        #scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: #00e1ff; z-index: 100; width: 0%; box-shadow: 0 0 10px #00e1ff; transition: width 0.1s; }
+    </style>
 </head>
+
 <body class="bg-dark text-gray-300 font-sans">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-black focus:font-bold focus:rounded-md">Skip to Content</a>
+
+    <div id="preloader"><div class="loader-ring"></div></div>
+    <div id="scroll-progress"></div>
 
     <nav class="py-6 px-8 border-b border-white/10 flex justify-between items-center">
         <a href="index.html" class="text-white font-bold text-xl hover:text-primary transition">← Back to Portfolio</a>
     </nav>
 
-    <header class="py-20 px-6 max-w-4xl mx-auto text-center">
-        <span class="text-primary tracking-widest uppercase text-sm font-bold">Data Analytics</span>
-        <h1 class="text-5xl md:text-6xl font-heading text-white font-bold mt-4 mb-8">Revenue Intelligence Dashboard</h1>
-        <p class="text-xl text-gray-400 leading-relaxed">Designed an interactive Power BI dashboard that identified $120k in underperforming inventory, enabling executive leadership to pivot Q4 strategy.</p>
+    <main id="main-content">
+
+    <header class="py-20 px-6 max-w-4xl mx-auto text-center" data-aos="fade-up">
+        <span class="text-primary tracking-widest uppercase text-sm font-bold">Data Analytics / Power BI</span>
+        <h1 class="text-5xl md:text-6xl font-heading text-white font-bold mt-4 mb-8">Construction Project Analytics Dashboard</h1>
+        <p class="text-xl text-gray-400 leading-relaxed">Designed a comprehensive Power BI dashboard for construction project management, enabling real-time tracking of 2M+ man-hours and 1.38M quantities across multiple disciplines, segments, and commodities.</p>
     </header>
 
-    <div class="max-w-6xl mx-auto px-6 mb-20">
-        <div class="aspect-video bg-dark-card rounded-2xl border border-white/10 overflow-hidden relative">
-            <img src="https://placehold.co/1200x675/1a1a1a/00e1ff?text=Power+BI+Dashboard+Screenshot" class="w-full h-full object-cover">
+    <!-- Hero Image -->
+    <div class="max-w-6xl mx-auto px-6 mb-20" data-aos="zoom-in">
+        <div class="bg-dark-card rounded-2xl border border-white/10 overflow-hidden p-4">
+            <img src="assets/images/projects/sales-dashboard.png" class="w-full rounded-xl shadow-2xl"
+                alt="Construction Project Analytics Dashboard in Power BI">
         </div>
     </div>
 
     <div class="max-w-4xl mx-auto px-6 grid md:grid-cols-3 gap-12 mb-20">
         <div class="md:col-span-2 space-y-12">
-            <section>
-                <h2 class="text-2xl text-white font-bold mb-4 font-heading">The Challenge</h2>
-                <p>The retail client was relying on static Excel spreadsheets for weekly reporting. This latency meant they were missing sales trends and overstocking low-demand items, tying up capital in stagnant inventory.</p>
-            </section>
-            <section>
-                <h2 class="text-2xl text-white font-bold mb-4 font-heading">The Solution</h2>
-                <p>I connected their SQL database directly to Power BI to create a live-updating dashboard. I utilized complex DAX measures to calculate Month-over-Month growth and inventory turnover ratios.</p>
-                <ul class="list-disc pl-5 mt-4 space-y-2">
-                    <li>Modeled data using Star Schema for optimized query performance.</li>
-                    <li>Created dynamic drill-downs allowing managers to view sales by region, category, and SKU.</li>
-                    <li>Implemented Row-Level Security (RLS) to ensure regional managers only saw their data.</li>
+            <section data-aos="fade-up">
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Background & Business Context</h2>
+                <p>In large-scale construction projects, <strong class="text-white">tracking man-hours, material quantities, and progress across disciplines</strong> is critical for ensuring timely delivery and cost control. Without a centralized view, project managers rely on fragmented spreadsheets and manual reports, leading to delayed decision-making and budget overruns.</p>
+                <p class="mt-4 text-primary italic border-l-2 border-primary pl-4">"Effective project controls depend on real-time visibility into resource allocation and quantity tracking across all disciplines and segments."</p>
+                <p class="mt-4">This project delivers a <strong class="text-white">single-pane-of-glass dashboard</strong> that consolidates construction data from multiple sources, enabling stakeholders to monitor KPIs, identify bottlenecks, and optimize resource allocation in real time.</p>
+
+                <h3 class="text-lg text-white font-bold mt-6 mb-3">Project Objectives</h3>
+                <ul class="list-disc pl-5 space-y-2 text-gray-400">
+                    <li><strong class="text-white">Consolidate</strong> man-hour and quantity data from multiple disciplines into a unified view</li>
+                    <li><strong class="text-white">Track</strong> key performance indicators — total man-hours, total quantity, and goal attainment</li>
+                    <li><strong class="text-white">Analyze</strong> resource distribution across segments (PRC, IND, GRN, GEN)</li>
+                    <li><strong class="text-white">Enable</strong> drill-down filtering by discipline, month, and area for granular insights</li>
+                    <li><strong class="text-white">Monitor</strong> commodity-level man-hour allocation for cost optimization</li>
                 </ul>
             </section>
-            <section>
-                <h2 class="text-2xl text-white font-bold mb-4 font-heading">The Results</h2>
-                <div class="grid grid-cols-3 gap-4 border-t border-white/10 pt-6">
-                    <div><span class="block text-3xl font-bold text-primary">$120k</span><span class="text-sm">Value Identified</span></div>
-                    <div><span class="block text-3xl font-bold text-primary">Live</span><span class="text-sm">Data Latency</span></div>
-                    <div><span class="block text-3xl font-bold text-primary">15hrs</span><span class="text-sm">Reporting Saved/Wk</span></div>
+
+            <section data-aos="fade-up">
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Dashboard Design & Features</h2>
+
+                <div class="space-y-6">
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">KPI Summary Cards</h3>
+                        <p class="text-sm text-gray-400 mt-1">Top-level metrics provide immediate project health visibility — <strong class="text-white">2M total man-hours</strong>, <strong class="text-white">1.38M total quantity</strong>, and a goal tracker showing <strong class="text-white">2,432 out of 4,600 target</strong> (area name and man-hour by commodity), enabling quick assessment of project progress.</p>
+                    </div>
+
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">Discipline Decomposition Tree</h3>
+                        <p class="text-sm text-gray-400 mt-1">An interactive hierarchical breakdown of the <strong class="text-white">1,377,156.94 total quantity</strong> across disciplines. Deep Foundations is the selected drill-down showing sub-categories: Civil Utilities (401K), Earthworks-Bulk (314K), Concrete (129K), Deep Foundations (43K), Aggregates & Paving (22K), and Piping (5.8K).</p>
+                    </div>
+
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">Segment Analysis</h3>
+                        <p class="text-sm text-gray-400 mt-1">Stacked bar charts visualize <strong class="text-white">quantity and man-hour distribution by segment</strong> (PRC, IND, GRN, GEN), revealing that PRC dominates with 1.1M man-hours, followed by GRN at 0.7M. A donut chart provides proportional segment breakdown for executive reporting.</p>
+                    </div>
+
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">Commodity Man-Hour Tracking</h3>
+                        <p class="text-sm text-gray-400 mt-1">Horizontal bar chart ranking commodities by man-hour consumption — <strong class="text-white">Concrete leads</strong> at ~0.5M hours, followed by Formwork and Grout. This breakdown enables targeted cost optimization and resource reallocation decisions.</p>
+                    </div>
+
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">Monthly Trend Analysis</h3>
+                        <p class="text-sm text-gray-400 mt-1">Time-series line chart tracking <strong class="text-white">quantity per month</strong>, showing seasonal patterns and production ramp-up. Clear upward trend from ~50K in April to peak of ~350K in October/November, indicating accelerating project velocity.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section data-aos="fade-up">
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Technical Implementation</h2>
+                <div class="bg-dark-card p-6 rounded-xl border border-white/10">
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-database text-primary mt-1"></i>
+                            <span><strong class="text-white">Data Modeling:</strong> Star schema design connecting fact tables (man-hours, quantities) with dimension tables (disciplines, segments, commodities, time) for optimized query performance</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-filter text-primary mt-1"></i>
+                            <span><strong class="text-white">Interactive Filters:</strong> Slicers for Month, Area Name, and numeric range filters enabling multi-dimensional analysis without separate reports</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-calculator text-primary mt-1"></i>
+                            <span><strong class="text-white">DAX Measures:</strong> Custom calculated measures for goal attainment percentages, cumulative trends, and segment proportions with dynamic formatting</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-sitemap text-primary mt-1"></i>
+                            <span><strong class="text-white">Decomposition Tree:</strong> AI-powered visual for drill-down analysis from discipline to sub-discipline to segment level, revealing quantity distribution patterns</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-chart-bar text-primary mt-1"></i>
+                            <span><strong class="text-white">Visualization Suite:</strong> Combination of KPI cards, stacked bar charts, horizontal bar charts, line charts, and donut charts for comprehensive data storytelling</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section data-aos="fade-up">
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Key Results</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 border-t border-white/10 pt-6">
+                    <div class="text-center">
+                        <span class="block text-3xl font-bold text-primary">2M+</span>
+                        <span class="text-sm text-gray-500">Man-Hours Tracked</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="block text-3xl font-bold text-primary">1.38M</span>
+                        <span class="text-sm text-gray-500">Quantities Monitored</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="block text-3xl font-bold text-primary">9+</span>
+                        <span class="text-sm text-gray-500">Commodities Analyzed</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="block text-3xl font-bold text-primary">5</span>
+                        <span class="text-sm text-gray-500">Segments Covered</span>
+                    </div>
+                </div>
+            </section>
+
+            <section data-aos="fade-up">
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Insights & Recommendations</h2>
+                <div class="space-y-4">
+                    <div class="bg-dark-card p-4 rounded-xl border border-white/10">
+                        <h3 class="text-white font-bold mb-2">Key Insights</h3>
+                        <ul class="text-sm text-gray-400 space-y-1">
+                            <li>• <strong class="text-white">PRC segment dominates</strong> resource consumption with 1.1M man-hours — critical for budget forecasting</li>
+                            <li>• <strong class="text-white">Concrete commodity</strong> consumes the most man-hours across all commodities — potential area for process optimization</li>
+                            <li>• <strong class="text-white">Goal attainment at 52.87%</strong> (2,432 of 4,600) — signals a need for acceleration or scope re-evaluation</li>
+                            <li>• <strong class="text-white">Monthly trends</strong> show a strong ramp-up pattern from Q2 to Q4, with peak activity in October–November</li>
+                        </ul>
+                    </div>
+                    <div class="bg-dark-card p-4 rounded-xl border border-white/10">
+                        <h3 class="text-white font-bold mb-2">Recommendations</h3>
+                        <ul class="text-sm text-gray-400 space-y-1">
+                            <li>• <strong class="text-white">Resource Optimization:</strong> Redistribute man-hours from over-allocated commodities to meet overall targets</li>
+                            <li>• <strong class="text-white">Segment Balancing:</strong> Investigate IND and GEN segments' lower man-hour allocation for potential under-resourcing</li>
+                            <li>• <strong class="text-white">Predictive Scheduling:</strong> Use monthly trend data to forecast resource requirements and prevent bottlenecks</li>
+                            <li>• <strong class="text-white">Goal Recalibration:</strong> Review the 4,600 area target against current trajectory to set realistic milestones</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
         </div>
-        
+
         <div class="space-y-8">
-            <div class="bg-dark-card p-6 rounded-xl border border-white/10">
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10" data-aos="fade-left">
                 <h3 class="text-white font-bold mb-4">Tech Stack</h3>
                 <div class="flex flex-wrap gap-2">
                     <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Power BI</span>
-                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">SQL</span>
                     <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">DAX</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Power Query</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Data Modeling</span>
                     <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Excel</span>
                 </div>
             </div>
-            <div class="bg-dark-card p-6 rounded-xl border border-white/10">
+
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10" data-aos="fade-left" data-aos-delay="100">
+                <h3 class="text-white font-bold mb-4">Dashboard Metrics</h3>
+                <ul class="text-sm text-gray-400 space-y-2">
+                    <li class="flex items-center gap-2"><i class="fas fa-clock text-primary text-xs"></i> Total Man-Hours</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-cubes text-primary text-xs"></i> Total Quantity</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-bullseye text-primary text-xs"></i> Goal Attainment (Area × Commodity)</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-layer-group text-primary text-xs"></i> Quantity by Discipline</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-chart-pie text-primary text-xs"></i> Quantity by Segment</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-hard-hat text-primary text-xs"></i> Commodity Man-Hour Breakdown</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-calendar-alt text-primary text-xs"></i> Quantity Per Month (Trend)</li>
+                </ul>
+            </div>
+
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10" data-aos="fade-left" data-aos-delay="200">
+                <h3 class="text-white font-bold mb-4">Key Statistics</h3>
+                <ul class="text-sm text-gray-400 space-y-3">
+                    <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                        <span>Man-Hours</span>
+                        <span class="text-primary font-bold">2,000,000+</span>
+                    </li>
+                    <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                        <span>Total Quantity</span>
+                        <span class="text-primary font-bold">1,377,157</span>
+                    </li>
+                    <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                        <span>Goal Progress</span>
+                        <span class="text-primary font-bold">52.87%</span>
+                    </li>
+                    <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                        <span>Disciplines</span>
+                        <span class="text-primary font-bold">7+</span>
+                    </li>
+                    <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                        <span>Commodities</span>
+                        <span class="text-primary font-bold">9</span>
+                    </li>
+                    <li class="flex items-center justify-between">
+                        <span>Segments</span>
+                        <span class="text-primary font-bold">5</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10" data-aos="fade-left" data-aos-delay="300">
+                <h3 class="text-white font-bold mb-4">Disciplines Covered</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-primary text-black text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">1</span>
+                        <span class="text-sm">Civil Utilities (401K qty)</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="bg-primary text-black text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">2</span>
+                        <span class="text-sm">Earthworks – Bulk (314K qty)</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="bg-primary text-black text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">3</span>
+                        <span class="text-sm">Concrete (129K qty)</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="bg-primary/60 text-black text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">4</span>
+                        <span class="text-sm">Deep Foundations (43K qty)</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="bg-primary/60 text-black text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">5</span>
+                        <span class="text-sm">Aggregates & Paving (22K qty)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10" data-aos="fade-left" data-aos-delay="400">
                 <h3 class="text-white font-bold mb-4">Project Links</h3>
-                <a href="#" class="block w-full text-center py-3 mt-3 border border-white/20 text-white font-bold rounded hover:bg-white/5 transition">View Dashboard (Demo)</a>
+                <a href="https://github.com/Akinkunmi100/Akinkunmi100.github.io"
+                    target="_blank" rel="noopener noreferrer"
+                    class="block w-full text-center py-3 bg-white text-black font-bold rounded hover:bg-gray-200 transition mb-3">View
+                    on GitHub</a>
             </div>
         </div>
     </div>
 
+    </main>
+
     <footer class="py-10 border-t border-white/10 text-center">
-        <p class="text-white/30 text-xs">© 2025 Akinkunmi Akinlabi.</p>
+        <p class="text-white/30 text-xs">© <script>document.write(new Date().getFullYear())</script> Akinkunmi Akinlabi.</p>
     </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 50 });
+        window.addEventListener("load", () => { const p = document.getElementById("preloader"); p.style.opacity = "0"; setTimeout(() => p.style.display = "none", 500); });
+        window.onscroll = function () { let s = document.body.scrollTop || document.documentElement.scrollTop; let h = document.documentElement.scrollHeight - document.documentElement.clientHeight; document.getElementById("scroll-progress").style.width = (s / h) * 100 + "%"; };
+    </script>
 </body>
+
 </html>

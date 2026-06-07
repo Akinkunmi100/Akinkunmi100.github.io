@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akinkunmi Akinlabi | Lead Data Architect & AI Engineer</title>
     <link rel="canonical" href="https://akinkunmi100.github.io/">
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/favicon-180.png">
     <script>
         if (location.pathname.startsWith('/akinkunmi.github.io')) {
             location.replace(location.origin + '/');
@@ -205,6 +209,7 @@
 </head>
 
 <body class="bg-dark text-text-body font-sans antialiased">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-black focus:font-bold focus:rounded-md">Skip to Content</a>
 
     <div id="preloader">
         <div class="loader-ring"></div>
@@ -240,7 +245,7 @@
                 <a href="https://drive.google.com/file/d/1bvziPTUXLaKllwyhAOh22E8U09vSHiqu/view?usp=sharing"
                     target="_blank"
                     class="hidden md:flex px-6 py-2 border border-white/20 text-white rounded-full text-xs font-bold uppercase tracking-widest hover:bg-primary hover:border-primary hover:text-black transition-all">Resume</a>
-                <button id="mobile-toggle" class="md:hidden text-white text-2xl relative z-50"><i
+                <button id="mobile-menu-btn" class="md:hidden text-white text-2xl relative z-50"><i
                         class="fas fa-bars"></i></button>
             </div>
         </div>
@@ -252,6 +257,8 @@
             <a href="#contact" class="text-2xl font-heading text-white hover:text-primary mobile-link">Contact</a>
         </div>
     </nav>
+
+    <main id="main-content">
 
     <section id="home" class="relative z-10 min-h-screen flex items-center justify-center pt-20">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center w-full">
@@ -506,6 +513,9 @@
                     <button
                         class="filter-btn px-4 py-2 rounded-full border border-white/10 text-white/60 text-xs font-bold uppercase hover:bg-white/5 transition-all"
                         data-filter="data">Data</button>
+                    <button
+                        class="filter-btn px-4 py-2 rounded-full border border-white/10 text-white/60 text-xs font-bold uppercase hover:bg-white/5 transition-all"
+                        data-filter="research">Research</button>
                 </div>
             </div>
 
@@ -587,9 +597,9 @@
                 <div class="group glass-card rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 project-card"
                     data-category="data" data-aos="fade-up" data-aos-delay="100">
                     <div class="h-56 overflow-hidden relative">
-                        <img src="https://placehold.co/600x400/1a1a1a/00e1ff?text=Sales+Dash"
+                        <img src="assets/images/projects/sales-dashboard.png"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            alt="Sales">
+                            alt="Revenue intelligence Power BI dashboard showing sales metrics and inventory analysis">
                         <a href="project-sales.html"
                             class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer"><span
                                 class="text-primary font-bold tracking-wider border border-primary px-4 py-2 rounded-full hover:bg-primary hover:text-black transition-colors">VIEW
@@ -609,9 +619,9 @@
                 <div class="group glass-card rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 project-card"
                     data-category="research" data-aos="fade-up" data-aos-delay="200">
                     <div class="h-56 overflow-hidden relative">
-                        <img src="https://placehold.co/600x400/1a1a1a/00e1ff?text=Research"
+                        <img src="assets/images/projects/research-consumer.png"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            alt="Research">
+                            alt="Consumer behavior analysis research with digital purchasing pattern visualization">
                         <a href="project-research.html"
                             class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer"><span
                                 class="text-primary font-bold tracking-wider border border-primary px-4 py-2 rounded-full hover:bg-primary hover:text-black transition-colors">VIEW
@@ -630,9 +640,9 @@
                 <div class="group glass-card rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 project-card"
                     data-category="ai" data-aos="fade-up">
                     <div class="h-56 overflow-hidden relative">
-                        <img src="https://placehold.co/600x400/1a1a1a/00e1ff?text=Computer+Vision"
+                        <img src="assets/images/projects/computer-vision.png"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            alt="CV">
+                            alt="Manufacturing quality control system using YOLOv8 computer vision object detection">
                         <a href="project-vision.html"
                             class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer"><span
                                 class="text-primary font-bold tracking-wider border border-primary px-4 py-2 rounded-full hover:bg-primary hover:text-black transition-colors">VIEW
@@ -651,9 +661,9 @@
                 <div class="group glass-card rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 project-card"
                     data-category="data" data-aos="fade-up" data-aos-delay="100">
                     <div class="h-56 overflow-hidden relative">
-                        <img src="https://placehold.co/600x400/1a1a1a/00e1ff?text=ETL"
+                        <img src="assets/images/projects/etl-pipeline.png"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            alt="ETL">
+                            alt="High-throughput ETL data pipeline architecture processing 10M daily records">
                         <a href="project-etl.html"
                             class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer"><span
                                 class="text-primary font-bold tracking-wider border border-primary px-4 py-2 rounded-full hover:bg-primary hover:text-black transition-colors">VIEW
@@ -673,9 +683,9 @@
                 <div class="group glass-card rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 project-card"
                     data-category="research" data-aos="fade-up" data-aos-delay="200">
                     <div class="h-56 overflow-hidden relative">
-                        <img src="https://placehold.co/600x400/1a1a1a/00e1ff?text=AI+Ethics"
+                        <img src="assets/images/projects/ai-ethics.png"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            alt="Ethics">
+                            alt="AI ethics and bias mitigation framework for responsible machine learning">
                         <a href="project-ethics.html"
                             class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer"><span
                                 class="text-primary font-bold tracking-wider border border-primary px-4 py-2 rounded-full hover:bg-primary hover:text-black transition-colors">VIEW
@@ -755,8 +765,10 @@
         </div>
     </section>
 
+    </main>
+
     <footer class="py-10 border-t border-white/5 text-center bg-dark">
-        <p class="text-white/30 text-xs uppercase tracking-widest">© 2025 Akinkunmi Akinlabi. All rights reserved.</p>
+        <p class="text-white/30 text-xs uppercase tracking-widest">© <script>document.write(new Date().getFullYear())</script> Akinkunmi Akinlabi. All rights reserved.</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -781,7 +793,7 @@
         document.addEventListener('DOMContentLoaded', typeWriter);
 
         // Mobile Menu
-        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileToggle = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
         if (mobileToggle && mobileMenu) {
