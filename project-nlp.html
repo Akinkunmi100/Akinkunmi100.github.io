@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BERT Document Classifier | Akinkunmi Akinlabi</title>
-    <meta name="description" content="BERT-based NLP classification pipeline for automated ticket routing and document categorization.">
+    <title>Parallel Corpus Linguistic Analysis Pipeline | Akinkunmi Akinlabi</title>
+    <meta name="description" content="A statistical NLP pipeline for cross-lingual word distribution modeling and translation density analysis using parallel corpora, SciPy, and Matplotlib.">
     <link class="canonical" href="https://akinkunmi100.github.io/project-nlp.html">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="BERT Document Classifier | Akinkunmi Akinlabi">
-    <meta property="og:description" content="BERT-based NLP classification pipeline for automated ticket routing and document categorization.">
+    <meta property="og:title" content="Parallel Corpus Linguistic Analysis Pipeline | Akinkunmi Akinlabi">
+    <meta property="og:description" content="A statistical NLP pipeline for cross-lingual word distribution modeling and translation density analysis using parallel corpora, SciPy, and Matplotlib.">
     <meta property="og:image" content="https://akinkunmi100.github.io/assets/images/projects/nlp-classifier.png">
     <meta property="og:url" content="https://akinkunmi100.github.io/project-nlp.html">
     <meta name="twitter:card" content="summary_large_image">
@@ -51,55 +51,115 @@
     <main id="main-content">
 
     <header class="py-20 px-6 max-w-4xl mx-auto text-center" data-aos="fade-up">
-        <span class="text-primary tracking-widest uppercase text-sm font-bold">AI / Machine Learning</span>
-        <h1 class="text-5xl md:text-6xl font-heading text-white font-bold mt-4 mb-8">Automated Document Classifier</h1>
-        <p class="text-xl text-gray-400 leading-relaxed">Engineered a BERT-based classification pipeline that reduced manual document processing time by 40%, saving the operations team 20+ hours per week.</p>
+        <span class="text-primary tracking-widest uppercase text-sm font-bold">Natural Language Processing / Statistics</span>
+        <h1 class="text-5xl md:text-6xl font-heading text-white font-bold mt-4 mb-8">Parallel Corpus Linguistic Pipeline</h1>
+        <p class="text-xl text-gray-400 leading-relaxed">Engineered a Python-based NLP pipeline to parse parallel translations, fit word length probability density curves, and execute relative hypothesis testing.</p>
     </header>
 
     <div class="max-w-6xl mx-auto px-6 mb-20" data-aos="zoom-in">
         <div class="bg-dark-card rounded-2xl border border-white/10 overflow-hidden p-4">
-            <img src="assets/images/projects/nlp-classifier.png" class="w-full rounded-xl shadow-2xl" alt="Automated Document Classifier NLP Pipeline Diagram">
+            <img src="assets/images/projects/nlp-classifier.png" class="w-full rounded-xl shadow-2xl" alt="Parallel Corpus Linguistic Distribution Pipeline visual">
         </div>
     </div>
 
     <div class="max-w-4xl mx-auto px-6 grid md:grid-cols-3 gap-12 mb-20">
         <div class="md:col-span-2 space-y-12">
-            <section>
-                <h2 class="text-2xl text-white font-bold mb-4 font-heading">The Challenge</h2>
-                <p>The client was receiving 5,000+ support tickets and legal documents daily. Manual sorting resulted in a 48-hour response delay and high operational costs. They needed an automated solution to route tickets to the correct department instantly with high accuracy.</p>
+            <section data-aos="fade-up">
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Background & Objective</h2>
+                <p>In quantitative translation studies and corpus linguistics, validating semantic equivalence and structural density between parallel translations is vital. Translating text often expands or contracts word lists per page. Without a structured validation method, identifying translation drift or structural imbalances in cross-lingual documents is error-prone.</p>
+                <p class="mt-4">This project implements a statistical NLP pipeline. By extracting parallel texts page-by-page, tokenizing textual strings, fitting Gaussian distributions to page-wise word lengths, and executing paired t-tests, the pipeline determines if translation word expansion is statistically significant.</p>
             </section>
-            <section>
-                <h2 class="text-2xl text-white font-bold mb-4 font-heading">The Solution</h2>
-                <p>I developed an end-to-end NLP pipeline using Python and TensorFlow. Moving beyond simple keyword matching, I fine-tuned a pre-trained BERT model to understand the context and sentiment of the documents.</p>
-                <ul class="list-disc pl-5 mt-4 space-y-2">
-                    <li>Implemented text preprocessing with NLTK (tokenization, lemmatization).</li>
-                    <li>Trained the model on a dataset of 50k historical documents.</li>
-                    <li>Deployed the model as a REST API using FastAPI and Docker containers.</li>
-                </ul>
-            </section>
-            <section>
-                <h2 class="text-2xl text-white font-bold mb-4 font-heading">The Results</h2>
-                <div class="grid grid-cols-3 gap-4 border-t border-white/10 pt-6">
-                    <div><span class="block text-3xl font-bold text-primary">40%</span><span class="text-sm">Time Saved</span></div>
-                    <div><span class="block text-3xl font-bold text-primary">95%</span><span class="text-sm">F1-Score</span></div>
-                    <div><span class="block text-3xl font-bold text-primary">&lt;200ms</span><span class="text-sm">Latency</span></div>
+
+            <section data-aos="fade-up">
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Pipeline Design & Workflow</h2>
+                
+                <div class="space-y-6">
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">1. Document Parsing & Text Extraction</h3>
+                        <p class="text-sm text-gray-400 mt-1">Ingests parallel English (<code class="text-primary">erman_english.pdf</code>) and German (<code class="text-primary">german-converted.pdf</code>) translation documents. Using <code class="text-primary">pdfplumber</code>, the pipeline automates text extraction page-by-page while preserving structural boundaries.</p>
+                    </div>
+
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">2. Tokenization & Lexical Counting</h3>
+                        <p class="text-sm text-gray-400 mt-1">Processes the extracted textual strings using regular expressions (<code class="text-primary">re.findall(r'\w+', text)</code>) to split sentences into lexical units, generating total word lengths per page and absolute word counts.</p>
+                    </div>
+
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">3. Normal Probability Density Modeling</h3>
+                        <p class="text-sm text-gray-400 mt-1">Tabulates the extracted counts into a Pandas DataFrame and calculates essential metrics (Mean, Standard Deviation, and Variance). It fits a Gaussian PDF using <code class="text-primary">scipy.stats.norm.fit</code> and plots probability density curves against histograms using <code class="text-primary">matplotlib</code>.</p>
+                    </div>
+
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">4. Paired Hypothesis Testing</h3>
+                        <p class="text-sm text-gray-400 mt-1">Applies a two-sided relative paired t-test (<code class="text-primary">scipy.stats.ttest_rel</code>) on page-wise word lengths to determine statistical equivalence across the parallel translation pair.</p>
+                    </div>
                 </div>
+            </section>
+
+            <section data-aos="fade-up">
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Key Statistical Findings</h2>
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="bg-dark-card p-4 rounded-xl border border-white/10 text-center">
+                        <span class="block text-2xl font-bold text-primary">4,291 / 4,285</span>
+                        <span class="text-xs text-gray-500">English vs German Total Words</span>
+                    </div>
+                    <div class="bg-dark-card p-4 rounded-xl border border-white/10 text-center">
+                        <span class="block text-2xl font-bold text-primary">3,953.0</span>
+                        <span class="text-xs text-gray-500">German Page Word Mean</span>
+                    </div>
+                    <div class="bg-dark-card p-4 rounded-xl border border-white/10 text-center">
+                        <span class="block text-2xl font-bold text-primary">510.93</span>
+                        <span class="text-xs text-gray-500">German Page Std. Deviation</span>
+                    </div>
+                    <div class="bg-dark-card p-4 rounded-xl border border-white/10 text-center">
+                        <span class="block text-2xl font-bold text-primary">p = 0.265</span>
+                        <span class="text-xs text-gray-500">Paired t-test p-value</span>
+                    </div>
+                </div>
+
+                <p>The pipeline executed a paired t-test on the page-by-page word counts of both translations. The statistical analysis returned a t-statistic of <code class="text-primary">-1.2116</code> and a p-value of <code class="text-primary">0.265</code>. Since the p-value is greater than the standard significance level of 0.05, we fail to reject the null hypothesis, indicating that there is no statistically significant variation in word length distribution between the translations.</p>
             </section>
         </div>
         
         <div class="space-y-8">
-            <div class="bg-dark-card p-6 rounded-xl border border-white/10">
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10" data-aos="fade-left" data-aos-delay="100">
                 <h3 class="text-white font-bold mb-4">Tech Stack</h3>
                 <div class="flex flex-wrap gap-2">
                     <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Python</span>
-                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">TensorFlow</span>
-                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">BERT</span>
-                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Docker</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Jupyter Notebook</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Pandas</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">SciPy Stats</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Matplotlib</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">pdfplumber</span>
                 </div>
             </div>
-            <div class="bg-dark-card p-6 rounded-xl border border-white/10">
+
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10" data-aos="fade-left" data-aos-delay="200">
+                <h3 class="text-white font-bold mb-4">Pipeline Stats</h3>
+                <ul class="text-sm text-gray-400 space-y-3">
+                    <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                        <span>Linguistic Method</span>
+                        <span class="text-primary font-bold">Parallel Corpus</span>
+                    </li>
+                    <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                        <span>Analysis Units</span>
+                        <span class="text-primary font-bold">Page-Wise Words</span>
+                    </li>
+                    <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                        <span>Statistical Test</span>
+                        <span class="text-primary font-bold">Paired t-test</span>
+                    </li>
+                    <li class="flex items-center justify-between border-b border-white/5 pb-2">
+                        <span>Distribution Fit</span>
+                        <span class="text-primary font-bold">Gaussian (Normal)</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10" data-aos="fade-left" data-aos-delay="300">
                 <h3 class="text-white font-bold mb-4">Project Links</h3>
-                <a href="https://github.com/Akinkunmi100/Akinkunmi100.github.io" target="_blank" rel="noopener noreferrer" class="block w-full text-center py-3 bg-white text-black font-bold rounded hover:bg-gray-200 transition">View Code on GitHub</a>
+                <a href="https://github.com/Akinkunmi100/Akinkunmi100.github.io" target="_blank" rel="noopener noreferrer" class="block w-full text-center py-3 bg-white text-black font-bold rounded hover:bg-gray-200 transition mb-3">View Repo on GitHub</a>
+                <a href="project_work.ipynb" target="_blank" class="block w-full text-center py-3 border border-primary text-primary font-bold rounded hover:bg-primary hover:text-black transition">Open Jupyter Notebook</a>
             </div>
         </div>
     </div>
