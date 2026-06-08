@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NaijaFood AI — Nigerian Food Recommender | Akinkunmi Akinlabi</title>
+    <meta name="description" content="A culturally intelligent, medically aware, trend-conscious Nigerian food recommendation system.">
+    <link rel="canonical" href="https://akinkunmi100.github.io/project-food.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="NaijaFood AI — Nigerian Food Recommender | Akinkunmi Akinlabi">
+    <meta property="og:description" content="A culturally intelligent, medically aware, trend-conscious Nigerian food recommendation system.">
+    <meta property="og:image" content="https://akinkunmi100.github.io/assets/images/food_recommender.png">
+    <meta property="og:url" content="https://akinkunmi100.github.io/project-food.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { primary: '#00e1ff', dark: '#050505', 'dark-card': '#121212' },
+                    fontFamily: { sans: ['Space Grotesk', 'sans-serif'], heading: ['Outfit', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&family=Space+Grotesk:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        body { background-color: #050505; color: #94a3b8; overflow-x: hidden; }
+        #preloader { position: fixed; inset: 0; background: #050505; z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s ease-out; }
+        .loader-ring { width: 60px; height: 60px; border: 4px solid rgba(255,255,255,0.1); border-top: 4px solid #00e1ff; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        #scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: #00e1ff; z-index: 100; width: 0%; box-shadow: 0 0 10px #00e1ff; transition: width 0.1s; }
+    </style>
+</head>
+<body class="bg-dark text-gray-300 font-sans">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-black focus:font-bold focus:rounded-md">Skip to Content</a>
+
+    <div id="preloader"><div class="loader-ring"></div></div>
+    <div id="scroll-progress"></div>
+
+    <nav class="py-6 px-8 border-b border-white/10 flex justify-between items-center">
+        <a href="index.html" class="text-white font-bold text-xl hover:text-primary transition">← Back to Portfolio</a>
+    </nav>
+
+    <main id="main-content">
+
+    <header class="py-20 px-6 max-w-4xl mx-auto text-center" data-aos="fade-up">
+        <span class="text-primary tracking-widest uppercase text-sm font-bold">AI / Recommendation System / Web App</span>
+        <h1 class="text-5xl md:text-6xl font-heading text-white font-bold mt-4 mb-8">NaijaFood AI</h1>
+        <p class="text-xl text-gray-400 leading-relaxed">A culturally intelligent, medically aware, and trend-conscious Nigerian food recommendation system utilizing a multi-signal recommendation engine to serve the African diaspora and locals alike.</p>
+    </header>
+
+    <div class="max-w-6xl mx-auto px-6 mb-20" data-aos="zoom-in">
+        <div class="bg-dark-card rounded-2xl border border-white/10 overflow-hidden p-4">
+            <img src="assets/images/food_recommender.png" class="w-full rounded-xl shadow-2xl" alt="Dashboard of NaijaFood AI">
+        </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-6 grid md:grid-cols-3 gap-12 mb-20">
+        <div class="md:col-span-2 space-y-12">
+
+            <section data-aos="fade-up">
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Overview &amp; Architecture</h2>
+                <p>NaijaFood AI is a full-stack food recommendation platform built specifically for Nigerians and the African diaspora. It goes far beyond a recipe database by understanding user health goals, regional food identities, eating patterns, current food trends, and geographic locations.</p>
+                <p class="mt-4">The backend relies on FastAPI, PostgreSQL, and Redis, while the frontend is powered by Next.js 16. It also includes an Expo-based React Native mobile app and AI integrations with OpenAI and Gemini LLMs.</p>
+            </section>
+
+            <section data-aos="fade-up">
+                <h2 class="text-2xl text-white font-bold mb-4 font-heading">Key Features</h2>
+                <div class="space-y-6">
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">Multi-Signal Recommendation Engine</h3>
+                        <p class="text-sm text-gray-400 mt-1">Combines health matching, collaborative filtering, content-based embeddings, trend boosting, and repetition penalty to deliver intelligent and diverse meal suggestions.</p>
+                    </div>
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">Medical &amp; Regional Awareness</h3>
+                        <p class="text-sm text-gray-400 mt-1">Incorporates condition-aware filtering for conditions like diabetes and hypertension. Intelligence includes 6 geopolitical regions in Nigeria, serving authentic dishes with appropriate preparation methods.</p>
+                    </div>
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">Diaspora Mode</h3>
+                        <p class="text-sm text-gray-400 mt-1">Provides an ingredient substitution engine for users in the UK, US, and Canada to mimic authentic meals using locally available alternatives.</p>
+                    </div>
+                    <div class="border-l-2 border-primary pl-4">
+                        <h3 class="text-white font-bold">Gamified Variety Score</h3>
+                        <p class="text-sm text-gray-400 mt-1">Tracks user eating fingerprints to flag repetitive habits and calculates a 0–100 variety score, turning dietary diversity into an engaging metric.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="space-y-8">
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10" data-aos="fade-left" data-aos-delay="100">
+                <h3 class="text-white font-bold mb-4">Tech Stack</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">FastAPI</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Next.js 16</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">PostgreSQL</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Redis</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">Docker</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">LLM API</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-xs text-primary border border-primary/20">React Native</span>
+                </div>
+            </div>
+
+            <div class="bg-dark-card p-6 rounded-xl border border-white/10" data-aos="fade-left" data-aos-delay="200">
+                <h3 class="text-white font-bold mb-4">Project Links</h3>
+                <a href="https://github.com/Akinkunmi100/Food-Recommender-System.git" target="_blank" class="block w-full text-center py-3 bg-white text-black font-bold rounded hover:bg-gray-200 transition mb-3">View Source on GitHub</a>
+            </div>
+        </div>
+    </div>
+    </main>
+
+    <footer class="py-10 border-t border-white/10 text-center">
+        <p class="text-white/30 text-xs">© <script>document.write(new Date().getFullYear())</script> Akinkunmi Akinlabi.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 50 });
+        window.addEventListener("load", () => { const p = document.getElementById("preloader"); p.style.opacity = "0"; setTimeout(() => p.style.display = "none", 500); });
+        window.onscroll = function () { let s = document.body.scrollTop || document.documentElement.scrollTop; let h = document.documentElement.scrollHeight - document.documentElement.clientHeight; document.getElementById("scroll-progress").style.width = (s / h) * 100 + "%"; };
+    </script>
+</body>
+</html>
